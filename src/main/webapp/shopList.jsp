@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: shade2903
   Date: 12.11.2021
@@ -12,6 +12,15 @@
 </head>
 <body>
 <div>Shopping LIST</div>
+<%  Double totalPrice = 0.0;
+    Map<String,Double> priceList = (Map<String, Double>) request.getAttribute("data");
+    for(Map.Entry<String,Double> entry : priceList.entrySet()){
+        out.print( "<option value=\"" + entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + " $</option>");
+        totalPrice += entry.getValue();
+    }
+
+    out.print("<div>" + totalPrice + " $<div>");
+%>
 
 </body>
 </html>

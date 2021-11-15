@@ -29,7 +29,6 @@
 
     <select multiple name="mapKey">
         <% Map<String,Double> priceList = PriceList.getPRODUCTS();
-        int i = 1;
         for(Map.Entry entry : priceList.entrySet()){
             out.print( "<option value=\"" + entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + "$</option>");
         }
