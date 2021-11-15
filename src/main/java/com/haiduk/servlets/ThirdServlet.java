@@ -17,6 +17,12 @@ public class ThirdServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name =  req.getParameter("mapKey");
+        System.out.println(name);
+
+
+        doGet(req,resp);
+
 
 
     }

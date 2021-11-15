@@ -17,11 +17,9 @@ import java.util.List;
 
 @WebServlet("/price")
 public class SecondServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/menu.jsp").forward(req,resp);
     }
 
     @Override
@@ -29,6 +27,8 @@ public class SecondServlet extends HttpServlet {
         String name = request.getParameter("name");
         request.setAttribute("userName", name);
         doGet(request,response);
-        request.getRequestDispatcher("/menu.jsp").forward(request,response);
+
+
+
     }
 }

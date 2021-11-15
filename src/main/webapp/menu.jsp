@@ -17,29 +17,17 @@
 
 <body>
 <h1> Welcome <%
-//    List<String> names = (List<String>) request.getAttribute("userName");
-//
-//    if (names != null && !names.isEmpty()) {
-//        for (String s : names) {
-//            out.println("<li>" + s + "</li>");
-//        }
-//    }else{
-//        out.println("Name is empty");
-//    }
     String name = (String) request.getAttribute("userName");
     out.print(name);
 
 %> </h1>
 
-<form  method="get" action="/totalPrice">
+<form  method="post" action="/totalPrice">
     <br />
 
     <div>Make you order </div>
 
-
-
-
-    <select multiple name="priseList">
+    <select multiple name="mapKey">
         <% Map<String,Double> priceList = PriceList.getPRODUCTS();
         int i = 1;
         for(Map.Entry entry : priceList.entrySet()){
