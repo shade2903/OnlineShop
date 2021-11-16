@@ -1,6 +1,5 @@
 package com.haiduk.servlets;
 
-import com.haiduk.domain.PriceList;
 import com.haiduk.entities.User;
 import com.haiduk.service.DataService;
 
@@ -10,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet("/totalPrice")
 public class ThirdServlet extends HttpServlet {
@@ -28,8 +23,10 @@ public class ThirdServlet extends HttpServlet {
 
         DataService dataService = new DataService();
         req.setAttribute("data",dataService.getSelectPriceList("mapKey",req));
-        User user = new User();
+        User user = User.getInstance();
         System.out.println(user.getName());
+
+
 
         doGet(req,resp);
 

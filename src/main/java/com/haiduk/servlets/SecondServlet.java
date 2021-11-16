@@ -26,6 +26,11 @@ public class SecondServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
 
+        User user = User.getInstance();
+        user.add(name);
+
+
+
 
         request.setAttribute("userName", name);
         doGet(request,response);

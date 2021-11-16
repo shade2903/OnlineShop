@@ -1,4 +1,5 @@
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="com.haiduk.entities.User" %><%--
   Created by IntelliJ IDEA.
   User: shade2903
   Date: 12.11.2021
@@ -11,7 +12,11 @@
     <title>Title</title>
 </head>
 <body>
-<div>Shopping LIST</div>
+<div>Shopping LIST<%
+    User user = User.getInstance();
+    out.print(" "+ user.getName());
+
+%></div>
 <%  Double totalPrice = 0.0;
     Map<String,Double> priceList = (Map<String, Double>) request.getAttribute("data");
     for(Map.Entry<String,Double> entry : priceList.entrySet()){
