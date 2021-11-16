@@ -94,7 +94,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>${tomcat7-maven-plugin.version}</version>
                 <configuration>
-                    <path>/${project.artifactId}</path>
+                    <path>/</path>
                     <port>8099</port>
                     <addContextWarDependencies>true</addContextWarDependencies>
                     <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>

@@ -12,20 +12,27 @@
     <title>Title</title>
 </head>
 <body>
-<div>Shopping LIST<%
+<style>
+    .inner {
+        margin: auto;
+        text-align: center}
+</style>
+<div class="inner">
+<h1>Dear <%
     User user = User.getInstance();
-    out.print(" "+ user.getName());
+    out.print(" "+ user.getName()+ ", ");
+    Integer num = 1;
 
-%></div>
+%> you order:</h1>
 <%  Double totalPrice = 0.0;
     Map<String,Double> priceList = (Map<String, Double>) request.getAttribute("data");
     for(Map.Entry<String,Double> entry : priceList.entrySet()){
-        out.print( "<option value=\"" + entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + " $</option>");
+        out.print( "<option value=\"" + num+") "+ entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + " $</option>");
         totalPrice += entry.getValue();
     }
 
-    out.print("<div>" + totalPrice + " $<div>");
+    out.print("<div>" + "Total: $ " + totalPrice + " $<div>");
 %>
-
+</div>
 </body>
 </html>

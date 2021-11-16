@@ -1,4 +1,3 @@
-<%@ page import="java.util.List" %>
 
 <%@ page import="java.util.Map" %>
 <%@ page import="com.haiduk.domain.PriceList" %><%--
@@ -18,7 +17,7 @@
 <body>
 <h1> Welcome <%
     String name = (String) request.getAttribute("userName");
-    out.print(name);
+    out.print(name+ " !") ;
 
 %> </h1>
 
