@@ -15,6 +15,12 @@
 </head>
 
 <body>
+<style>
+    .inner {
+        margin: auto;
+        text-align: center}
+</style>
+<div class="inner">
 <h1> Welcome <%
     String name = (String) request.getAttribute("userName");
     out.print(name+ " !") ;
@@ -32,15 +38,12 @@
             out.print( "<option value=\"" + entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + "$</option>");
         }
         %>
-
-
-
-
     </select>
 
     <br>
     <input type="submit" value="Enter">
 </form>
+    </div>
 
 </body>
 </html>
