@@ -1,6 +1,8 @@
 package com.haiduk.servlets;
 
 import com.haiduk.domain.PriceList;
+import com.haiduk.entities.User;
+import com.haiduk.service.DataService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,37 +25,13 @@ public class ThirdServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<String> list = new ArrayList<>();
 
-        for(String s : req.getParameterValues("mapKey")){
-            System.out.println(s);
-            list.add(s);
-        }
-        System.out.println(list.size());
-        Map<String,Double> map = new HashMap<>();
-        Map<String,Double> priceList = PriceList.getPRODUCTS();
-
-
-        for(int i = 0; i <list.size(); i++){
-            for(Map.Entry<String,Double> key: priceList.entrySet()){
-                if((key.getKey()).equals(list.get(i))){
-                    map.put(key.getKey(),key.getValue());
-
-                }
-            }
-        }
-
-        req.setAttribute("data",map);
-
-
-
-//        System.out.println(name);
-
-
+        DataService dataService = new DataService();
+        req.setAttribute("data",dataService.getSelectPriceList("mapKey",req));
+        User user = new User();
+        System.out.println(user.getName());
 
         doGet(req,resp);
-
-
 
     }
 }

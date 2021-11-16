@@ -2,8 +2,7 @@ package com.haiduk.servlets;
 
 
 
-import com.haiduk.entites.Model;
-import com.haiduk.entites.User;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

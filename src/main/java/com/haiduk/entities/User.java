@@ -1,14 +1,7 @@
-package com.haiduk.entites;
+package com.haiduk.entities;
 
 public class User {
     private String name;
-    public String user = "Tolay";
-    public User(){
-
-    }
-    public User(String name){
-        this.name = name;
-    }
 
     public String getName() {
         return name;

@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.haiduk.entites.User" %>
+
 <%@ page import="java.util.Map" %>
 <%@ page import="com.haiduk.domain.PriceList" %><%--
   Created by IntelliJ IDEA.

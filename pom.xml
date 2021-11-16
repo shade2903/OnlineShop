@@ -125,7 +125,7 @@
                             <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/web/WEB-INF</directory>
+                                    <directory>${project.basedir}/webapp/WEB-INF</directory>
                                 </resource>
                             </resources>
                         </configuration>
