@@ -24,15 +24,15 @@
     Integer num = 1;
 
 %> you order:</h1>
-<%  Double totalPrice = 0.0;
-    Map<String,Double> priceList = (Map<String, Double>) request.getAttribute("data");
-    for(Map.Entry<String,Double> entry : priceList.entrySet()){
-        out.print( "<option value=\"" + num+") "+ entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + " $</option>");
-        totalPrice += entry.getValue();
+<%--<%  Double totalPrice = 0.0;--%>
+<%--    Map<String,Double> priceList = (Map<String, Double>) request.getAttribute("data");--%>
+<%--    for(Map.Entry<String,Double> entry : priceList.entrySet()){--%>
+<%--        out.print( "<option value=\"" + num+") "+ entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + " $</option>");--%>
+<%--        totalPrice += entry.getValue();--%>
     }
 
-    out.print("<div>" + "Total: $ " + totalPrice + " $<div>");
-%>
+<%--    out.print("<div>" + "Total: $ " + totalPrice + " $<div>");--%>
+<%--%>--%>
 </div>
 </body>
 </html>
