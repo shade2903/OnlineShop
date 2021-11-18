@@ -1,5 +1,7 @@
 <%@ page import="java.util.Map" %>
-<%@ page import="com.haiduk.entities.User" %><%--
+<%@ page import="com.haiduk.entities.User" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.haiduk.domain.Product" %><%--
   Created by IntelliJ IDEA.
   User: shade2903
   Date: 12.11.2021
@@ -24,15 +26,13 @@
     Integer num = 1;
 
 %> you order:</h1>
-<%--<%  Double totalPrice = 0.0;--%>
-<%--    Map<String,Double> priceList = (Map<String, Double>) request.getAttribute("data");--%>
-<%--    for(Map.Entry<String,Double> entry : priceList.entrySet()){--%>
-<%--        out.print( "<option value=\"" + num+") "+ entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + " $</option>");--%>
-<%--        totalPrice += entry.getValue();--%>
-    }
+<%  Double totalPrice = 0.0; %>
+    <% ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("mapKey");
+    for(Product x : list){
+        out.print( "<option >" + num++ +")"  + x + "</option>");
+    totalPrice += x.getPrice();}%>
+      <%  out.print("<div>" + "Total: $ " + totalPrice + " $</div>");   %>
 
-<%--    out.print("<div>" + "Total: $ " + totalPrice + " $<div>");--%>
-<%--%>--%>
-</div>
+        </div>
 </body>
 </html>

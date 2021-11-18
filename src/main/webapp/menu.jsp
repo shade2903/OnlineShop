@@ -35,14 +35,9 @@
     <div>Make you order </div>
 
     <select multiple name="mapKey">
-<%--        <% Map<String,Double> priceList = PriceList.getPRODUCTS();--%>
-<%--        for(Map.Entry entry : priceList.entrySet()){--%>
-<%--            out.print( "<option value=\"" + entry.getKey()+"\">" +entry.getKey() + " " + entry.getValue() + "$</option>");--%>
-<%--        }--%>
-<%--        %>--%>
         <% ArrayList<Product> priceList = PriceList.getListProduct();
             for(Product o : priceList){
-                out.print( "<option value=\"" + o +"\">" + o + "</option>");
+                out.print( "<option value=\"" + o.getName() +"\">" + o + "</option>");
             }
         %>
     </select>
