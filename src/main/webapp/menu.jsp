@@ -34,13 +34,14 @@
 
     <div>Make you order </div>
 
-    <select multiple name="mapKey">
+    <select  name="mapKey">
         <% ArrayList<Product> priceList = PriceList.getListProduct();
             for(Product o : priceList){
                 out.print( "<option value=\"" + o.getName() +"\">" + o + "</option>");
             }
         %>
     </select>
+    <input type="button" value="add" onclick=""/>
 
     <br>
     <input type="submit" value="Enter">
