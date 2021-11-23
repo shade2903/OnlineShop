@@ -26,11 +26,6 @@ public class PriceList {
         products.add(new Product("Product4",50.0));
         products.add(new Product("Product5",310.0));
         return  products;
-
-
-
-
-
     }
 
 }

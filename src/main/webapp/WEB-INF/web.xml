@@ -16,4 +16,16 @@
         <servlet-name>jsp-servlet</servlet-name>
         <url-pattern>*.jsp</url-pattern>
     </servlet-mapping>
+
+    <!--Filters -->
+    <filter>
+        <filter-name> MyFilter</filter-name>
+        <filter-class>MyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
+
 </web-app>

@@ -16,8 +16,8 @@ import java.io.IOException;
 @WebServlet("/hello")
 public class FServlet extends HttpServlet {
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/welcome.jsp");
         requestDispatcher.forward(request,response);

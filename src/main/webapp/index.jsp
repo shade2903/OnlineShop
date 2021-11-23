@@ -11,6 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="http://localhost:8099/hello"><h1>Старт</h1> </a>
+
   </body>
 </html>
