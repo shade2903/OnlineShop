@@ -17,9 +17,7 @@ import java.util.Map;
 
 @WebServlet("/totalPrice")
 public class ThirdServlet extends HttpServlet {
-    private final static ArrayList<Product> listProduct = PriceList.getListProduct();
-    private final static ArrayList<Product> selectList = new ArrayList<>();
-    private final static ArrayList<String> nameProduct = new ArrayList<>();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,14 +30,7 @@ public class ThirdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DataService service = new DataService();
         System.out.println(req.getSession().getAttribute("UserName"));
-
-
-        selectList.addAll(service.getSelectPriceList("selectList",req));
-        System.out.println(selectList.size());
-
-
-        req.setAttribute("selectList", selectList);
-
+        req.setAttribute("selectList", service.getSelectPriceList("selectList",req));
         doGet(req, resp);
 
     }
