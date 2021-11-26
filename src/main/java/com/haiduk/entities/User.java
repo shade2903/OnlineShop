@@ -1,11 +1,14 @@
 package com.haiduk.entities;
 
 public class User {
-    private static User instance = new User();
+//    private static User instance = new User();
     private String name;
 
-    public static User getInstance(){
-        return instance;
+//    public static User getInstance(){
+//        return instance;
+//    }
+    public User(String name){
+        this.name = name;
     }
 
     public void add(String name){
