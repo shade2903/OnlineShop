@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @WebServlet("/hello")
-public class FServlet extends HttpServlet {
+public class WelcomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

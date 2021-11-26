@@ -6,7 +6,8 @@
 <head>
     <title>Title</title>
     <style>
-        <%@include file="../css/style.css"%> >
+        <%@include file="../css/style.css"%>
+        >
     </style>
 </head>
 
@@ -16,7 +17,7 @@
     <h1> Welcome <%out.print(session.getAttribute("userName") + " !");%></h1>
     <% String userName = (String) session.getAttribute("userName");%>
 
-    <form method="post" action="/price">
+    <form method="post" action="/priceList">
         <br/>
         <h3>Make you order</h3>
         <select class="input" name="mapKey">
@@ -33,15 +34,13 @@
 
     </form>
 
-    <form method="post" action="/totalPrice">
+    <form method="post" action="/totalPriceList">
 
         <input class="input" type="submit" value="Submit">
         <p>You have already chosen:</p>
-
         <c:forEach var="product" items="${selectList}">
         <option value="${product.name}">${product.name} (${product.price}$)</option>
         <input type="hidden" name=selectList value="${product.name}">
-
         </c:forEach>
 </div>
 

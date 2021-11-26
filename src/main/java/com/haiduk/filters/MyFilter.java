@@ -1,3 +1,5 @@
+package com.haiduk.filters;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServlet;
@@ -6,15 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebFilter(filterName = "MyFilter", urlPatterns = {"/price"})
+@WebFilter(filterName = "MyFilter", urlPatterns = {"/priceList"})
 public class MyFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
-//        System.out.println(req.getAttribute("filter"));
-
         if(request.getParameter("filter") == null){
             ((HttpServletResponse) resp).sendError(401);
         }else{

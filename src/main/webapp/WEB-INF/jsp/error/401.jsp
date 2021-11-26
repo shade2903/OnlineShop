@@ -7,7 +7,7 @@
     </style>
 </head>
 <body>
-<div class="box">
+<div >
     <h1>Oops!</h1>
     <p class="msg">You shouldn't be here</p>
     <p class="msg">Please, enter user name and agree with the terms of service first.</p>

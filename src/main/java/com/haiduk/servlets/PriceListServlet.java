@@ -18,16 +18,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-@WebServlet("/price")
-public class SecondServlet extends HttpServlet {
+@WebServlet("/priceList")
+public class PriceListServlet extends HttpServlet {
     private final static ArrayList<Product> listProduct = PriceList.getListProduct();
     private final static ArrayList<Product> selectList = new ArrayList<>();
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("WEB-INF/jsp/menu.jsp").forward(req,resp);
-
+        req.getRequestDispatcher("WEB-INF/jsp/menu.jsp").forward(req,resp);
 
     }
 
@@ -36,23 +35,11 @@ public class SecondServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("userName", req.getParameter("userName"));
         req.setAttribute("products", listProduct);
-
-        String key = (String) req.getParameter("mapKey");
-        if (key != null) {
-            key = (String) req.getParameter("mapKey");
-            for (Product s : listProduct) {
-                if (s.getName().equals(key)) {
-                    selectList.add(s);
-
-                }
-            }
-        }
-
+        DataService service = new DataService();
+        selectList.addAll(service.getSelect("mapKey",req));
         req.setAttribute("selectList", selectList);
-        req.getRequestDispatcher("WEB-INF/jsp/menu.jsp").forward(req, resp);
 
-
-//        doGet(req,resp);
+        doGet(req,resp);
 
 
     }

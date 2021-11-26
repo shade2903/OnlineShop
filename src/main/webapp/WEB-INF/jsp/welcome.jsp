@@ -10,7 +10,7 @@
 <div class="inner">
 <h1> Welcome to online shop </h1>
 
-<form  method="post" action="/price" >
+<form  method="post" action="/priceList" >
         <input class="input" required type="text" name="userName" placeholder="Enter your name">
     <div>
         <input type="checkbox"  name="filter" value="true">
