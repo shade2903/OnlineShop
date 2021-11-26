@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @WebServlet("/priceList")
 public class PriceListServlet extends HttpServlet {
     private final static ArrayList<Product> listProduct = PriceList.getListProduct();
-    private final static ArrayList<Product> selectList = new ArrayList<>();
+    private final static ArrayList<Product> clickList = new ArrayList<>();
 
 
     @Override
@@ -36,8 +36,8 @@ public class PriceListServlet extends HttpServlet {
         session.setAttribute("userName", req.getParameter("userName"));
         req.setAttribute("products", listProduct);
         DataService service = new DataService();
-        selectList.addAll(service.getSelect("mapKey",req));
-        req.setAttribute("selectList", selectList);
+        clickList.addAll(service.getSelect("mapKey",req));
+        session.setAttribute("clickList", clickList);
 
         doGet(req,resp);
 

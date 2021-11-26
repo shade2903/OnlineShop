@@ -38,7 +38,7 @@
 
         <input class="input" type="submit" value="Submit">
         <p>You have already chosen:</p>
-        <c:forEach var="product" items="${selectList}">
+        <c:forEach var="product" items="${clickList}">
         <option value="${product.name}">${product.name} (${product.price}$)</option>
         <input type="hidden" name=selectList value="${product.name}">
         </c:forEach>

@@ -29,7 +29,7 @@ public class TotalPriceListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DataService service = new DataService();
-        req.setAttribute("selectList", service.getSelectPriceList("selectList",req));
+        req.getSession().setAttribute("selectList", service.getSelectPriceList("selectList",req));
         doGet(req, resp);
 
     }
