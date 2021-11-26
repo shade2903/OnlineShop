@@ -17,18 +17,30 @@ import java.util.Map;
 
 @WebServlet("/totalPrice")
 public class ThirdServlet extends HttpServlet {
+    private final static ArrayList<Product> listProduct = PriceList.getListProduct();
+    private final static ArrayList<Product> selectList = new ArrayList<>();
+    private final static ArrayList<String> nameProduct = new ArrayList<>();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/shopList.jsp").forward(req,resp);
+
+        req.getRequestDispatcher("WEB-INF/jsp/shopList.jsp").forward(req, resp);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DataService dataService = new DataService();
-        req.setAttribute("mapKey",dataService.getSelectPriceList("mapKey",req));
+        DataService service = new DataService();
+        System.out.println(req.getSession().getAttribute("UserName"));
 
-        doGet(req,resp);
+
+        selectList.addAll(service.getSelectPriceList("selectList",req));
+        System.out.println(selectList.size());
+
+
+        req.setAttribute("selectList", selectList);
+
+        doGet(req, resp);
 
     }
 }

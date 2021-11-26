@@ -18,12 +18,13 @@ public class DataService {
         selectList = new ArrayList<>();
         priceList = PriceList.getListProduct();
 
+
         for(String s : req.getParameterValues(str)){
           name.add(s);
         }
         for(int i= 0; i < name.size(); i++){
             for(Product x : priceList) {
-                if ((x.getName()).equals(priceList.get(i).getName())) {
+                if ((x.getName()).equals(name.get(i))) {
                     selectList.add(x);
                 }
             }

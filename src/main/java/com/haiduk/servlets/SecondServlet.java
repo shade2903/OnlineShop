@@ -27,25 +27,34 @@ public class SecondServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("selectList",selectList);
-        req.getRequestDispatcher("/menu.jsp").forward(req,resp);
+//        req.getRequestDispatcher("WEB-INF/jsp/menu.jsp").forward(req,resp);
+
+
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.setAttribute("userName",req.getParameter("userName"));
+        req.setAttribute("products",listProduct);
+
+        String key = (String) req.getParameter("mapKey");
+        if(key != null){
+          key = (String) req.getParameter("mapKey");
+          for(Product s : listProduct){
+              if(s.getName().equals(key)) {
+                  selectList.add(s);
+
+              }
+              }
+          }
+
+        req.setAttribute("selectList",selectList);
+        req.getRequestDispatcher("WEB-INF/jsp/menu.jsp").forward(req,resp);
 
 
-        String name = request.getParameter("name");
-        HttpSession session = request.getSession();
-        session.setAttribute("name",name);
-//        final String nameProduct = request.getParameter("nameProduct");
-//        final String price = request.getParameter("price");
-//         final Product product = new Product(nameProduct, Double.parseDouble(price));
-//        selectList.add(product);
-        DataService dataService = new DataService();
-        request.setAttribute("mapKey",dataService.getSelectPriceList("mapKey",request));
 
-        doGet(request,response);
+//        doGet(req,resp);
 
 
 

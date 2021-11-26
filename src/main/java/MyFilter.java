@@ -1,19 +1,29 @@
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+@WebFilter(filterName = "MyFilter", urlPatterns = {"/price"})
 public class MyFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-//        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletRequest request = (HttpServletRequest) req;
+//        System.out.println(req.getAttribute("filter"));
 
-//        if(request.getAttribute("filter").equals("true")){
-//            chain.doFilter(req, resp);
-//        }
-        chain.doFilter(req, resp);
+        if(request.getParameter("filter") == null){
+            ((HttpServletResponse) resp).sendError(401);
+        }else{
+            chain.doFilter(req, resp);
+        }
+
+
+
+
 
     }
 
