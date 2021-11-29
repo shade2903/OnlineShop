@@ -16,12 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet("/priceList")
 public class PriceListServlet extends HttpServlet {
-    private final static ArrayList<Product> listProduct = PriceList.getListProduct();
-    private final static ArrayList<Product> clickList = new ArrayList<>();
+    private final static List<Product> listProduct = PriceList.getListProduct();
+    private final static List<Product> clickList = new ArrayList<>();
 
 
     @Override

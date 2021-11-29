@@ -7,15 +7,13 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpServlet;
 
 public class Listener implements ServletContextListener {
-
     @Override
-    public void contextInitialized(ServletContextEvent servletContextEvent) {
+    public void contextInitialized(ServletContextEvent sce) {
         SqlHelper.initDB();
-
     }
 
     @Override
-    public void contextDestroyed(ServletContextEvent servletContextEvent) {
+    public void contextDestroyed(ServletContextEvent sce) {
 
     }
 }

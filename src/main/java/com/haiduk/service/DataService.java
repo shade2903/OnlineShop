@@ -6,15 +6,16 @@ import com.haiduk.domain.Product;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataService {
-    private ArrayList<String> name = new ArrayList<>();
-    private ArrayList<Product> selectList = new ArrayList<>();
-    private ArrayList<Product> priceList = PriceList.getListProduct();
+    private List<String> name = new ArrayList<>();
+    private List<Product> selectList = new ArrayList<>();
+    private List<Product> priceList = PriceList.getListProduct();
 
 
-    public ArrayList<Product> getSelectPriceList(String str, HttpServletRequest req){
+    public List<Product> getSelectPriceList(String str, HttpServletRequest req){
 
         if(req.getParameterValues(str) != null) {
 
@@ -33,7 +34,7 @@ public class DataService {
         return null;
     }
 
-    public ArrayList<Product> getSelect(String str, HttpServletRequest req) {
+    public List<Product> getSelect(String str, HttpServletRequest req) {
         if (req.getParameter(str) != null) {
             for (Product s : priceList) {
                 if (s.getName().equals(req.getParameter(str))) {
