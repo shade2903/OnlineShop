@@ -1,9 +1,4 @@
 package com.haiduk.servlets;
-
-
-
-
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,19 +12,8 @@ import java.io.IOException;
 public class WelcomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/welcome.jsp");
         requestDispatcher.forward(request,response);
-
-
-
-
-
-
-
-
-
 
     }
 

@@ -53,11 +53,14 @@
         </dependency>
 
         <!-- JUnit -->
+
+        <!-- JDBC H2 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
         </dependency>
+
 
         <!-- End external libraries -->
     </dependencies>
