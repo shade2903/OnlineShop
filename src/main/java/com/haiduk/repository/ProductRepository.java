@@ -11,14 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository {
+
+
     private static Connection connection = SqlHelper.getConnection();
+
+
+
+
+
     public static List<Product> getAll(){
         List<Product> products = new ArrayList<>();
         ResultSet rs = null;
         try(PreparedStatement ps = connection.prepareStatement("SELECT id, title, price FROM PRICE_LIST")) {
             rs = ps.executeQuery();
             while (rs.next()) {
-                products.add(new Product(rs.getString("title"), rs.getDouble("price")));
+                products.add(new Product(rs.getString("title"), rs.getDouble("price"),rs.getInt("id")));
             }
         }catch (SQLException e){
             e.printStackTrace();

@@ -3,12 +3,10 @@ package com.haiduk.servlets;
 
 import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
-import com.haiduk.entities.User;
+import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +32,14 @@ public class PriceListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        session.setAttribute("userName", req.getParameter("userName"));
+        if(req.getParameter("userName") != null){
+            session.setAttribute("userName", req.getParameter("userName"));
+        }
+        for(Product product : listProduct){
+            System.out.println(product.getId());
+        }
+
+
         req.setAttribute("products", listProduct);
         DataService service = new DataService();
         clickList.addAll(service.getSelect("mapKey",req));

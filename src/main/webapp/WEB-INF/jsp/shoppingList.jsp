@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.haiduk.domain.Product" %>
 <%@ page import="com.haiduk.service.ProductService" %>
+<%@ page import="com.haiduk.repository.UserRepository" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,6 +15,7 @@
 </head>
 <body>
 <div class="inner">
+    <% UserRepository.addUser((String) session.getAttribute("userName"));%>
     <%Integer num = 1; %>
     <% ProductService productService = new ProductService();
         Double total = productService.getTotalPrice((ArrayList<Product>) session.getAttribute("selectList")); %>

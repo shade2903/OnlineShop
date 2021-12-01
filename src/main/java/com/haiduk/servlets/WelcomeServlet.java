@@ -17,7 +17,7 @@ public class WelcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/welcome.jsp");
-//        SqlHelper.initDB();
+
         requestDispatcher.forward(request,response);
 
     }

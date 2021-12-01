@@ -15,7 +15,6 @@
 
 <div class="inner">
     <h1> Welcome <%out.print(session.getAttribute("userName") + " !");%></h1>
-    <% String userName = (String) session.getAttribute("userName");%>
 
     <form method="post" action="/priceList">
         <br/>
@@ -26,7 +25,6 @@
                 <option value="${product.name}">${product.name} (${product.price}$)</option>
             </c:forEach>
             <input type="hidden" name="filter" value="true">
-            <input type="hidden" name="userName" value="${userName}">
 
         </select>
         <br>
