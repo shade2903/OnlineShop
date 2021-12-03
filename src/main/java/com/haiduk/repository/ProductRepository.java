@@ -15,10 +15,6 @@ public class ProductRepository {
 
     private static Connection connection = SqlHelper.getConnection();
 
-
-
-
-
     public static List<Product> getAll(){
         List<Product> products = new ArrayList<>();
         ResultSet rs = null;
@@ -40,5 +36,29 @@ public class ProductRepository {
             }
         }
         return products;
+    }
+
+    public static int getIdByName(String nameProduct){
+        ResultSet rs = null;
+        int productId = -1;
+        try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE_LIST WHERE TITLE = ?")){
+            ps.setString(1,nameProduct);
+            if(!rs.next()){
+                productId = rs.getInt("id");
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return productId;
+
     }
 }

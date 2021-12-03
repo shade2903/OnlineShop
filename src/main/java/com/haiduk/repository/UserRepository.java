@@ -32,10 +32,6 @@ public class UserRepository {
     }
 
 
-
-
-
-
     }
     public static Integer getIDbyName(String name){
         ResultSet rs = null;

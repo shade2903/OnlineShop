@@ -4,6 +4,7 @@
 <%@ page import="com.haiduk.domain.Product" %>
 <%@ page import="com.haiduk.service.ProductService" %>
 <%@ page import="com.haiduk.repository.UserRepository" %>
+<%@ page import="com.haiduk.repository.OrderRepository" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,6 +27,7 @@
         <input type="hidden" name=selectList value="${product.name}">
     </c:forEach>
     <% out.print("<div>" + "Total: $ " + total + " $</div>"); %>
+    <% OrderRepository.addOrder(UserRepository.getIDbyName(session.getAttribute("userName").toString()),total);%>
 
 </div>
 </body>
