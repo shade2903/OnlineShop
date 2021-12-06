@@ -3,6 +3,8 @@ package com.haiduk.servlets;
 
 import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
+import com.haiduk.repository.OrderRepository;
+import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
 
@@ -35,15 +37,12 @@ public class PriceListServlet extends HttpServlet {
         if(req.getParameter("userName") != null){
             session.setAttribute("userName", req.getParameter("userName"));
         }
-        for(Product product : listProduct){
-            System.out.println(product.getId());
-        }
-
 
         req.setAttribute("products", listProduct);
         DataService service = new DataService();
         clickList.addAll(service.getSelect("mapKey",req));
         session.setAttribute("clickList", clickList);
+
 
         doGet(req,resp);
 

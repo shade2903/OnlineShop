@@ -56,29 +56,10 @@ public class UserRepository {
             }
         }
 
-        return 0;
+        return -1;
     }
 
 
 }
 
-//ublic static Order save(Order order) {
-//        Connection conn = SqlHelper.getConnection();
-//        try (PreparedStatement ps = conn.prepareStatement("INSERT INTO SHOP_ORDER (id, user_id, total_price) VALUES (?,?,?)")) {
-//        ps.setInt(1, order.getId());
-//        ps.setInt(2, order.getUserId());
-//        ps.setDouble(3, order.getTotalPrice());
-//        ps.execute();
-//
-//
-//        for (Product product : order.getProducts()) {
-//        ProductRepository.saveOrderGood(product, order.getId());
-//        }
-//
-//
-//        } catch (SQLException e) {
-//        e.printStackTrace();
-//        }
-//        return order;
-//        }
-//        }
+

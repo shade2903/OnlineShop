@@ -43,9 +43,13 @@ public class ProductRepository {
         int productId = -1;
         try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE_LIST WHERE TITLE = ?")){
             ps.setString(1,nameProduct);
+            rs = ps.executeQuery();
             if(!rs.next()){
-                productId = rs.getInt("id");
+
             }
+            productId = rs.getInt("ID");
+
+
 
         }catch (SQLException e) {
             e.printStackTrace();
@@ -59,6 +63,5 @@ public class ProductRepository {
             }
         }
         return productId;
-
     }
 }

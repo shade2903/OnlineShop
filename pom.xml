@@ -13,6 +13,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <!-- external libs -->
+        <spring.version>5.1.2.RELEASE</spring.version>
+
         <!-- External libraries versions -->
         <junit.version>4.12</junit.version>
         <servlet.version>3.1.0</servlet.version>
@@ -61,12 +64,31 @@
             <version>1.4.200</version>
         </dependency>
 
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
 
         <!-- End external libraries -->
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <build>
+
+
         <directory>${project.basedir}/target</directory>
         <plugins>
             <plugin>
@@ -108,9 +130,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven-war-plugin.version}</version>
-                                <configuration>
-                                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
-                                </configuration>
+                <configuration>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -125,7 +147,9 @@
                         </goals>
                         <configuration>
                             <overwrite>true</overwrite>
-                            <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/</outputDirectory>
+                            <outputDirectory>
+                                ${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/
+                            </outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/webapp/WEB-INF</directory>
@@ -137,8 +161,6 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 
 </project>
