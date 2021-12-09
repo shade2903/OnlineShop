@@ -2,16 +2,14 @@ package com.haiduk.repository;
 
 import com.haiduk.domain.Product;
 import com.haiduk.sql.SqlHelper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+@Repository
 public class OrderRepository {
    private static Connection connection = SqlHelper.getConnection();
 

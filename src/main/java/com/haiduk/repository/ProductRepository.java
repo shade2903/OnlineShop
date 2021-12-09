@@ -2,6 +2,7 @@ package com.haiduk.repository;
 
 import com.haiduk.domain.Product;
 import com.haiduk.sql.SqlHelper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class ProductRepository {
 
 
@@ -45,6 +46,7 @@ public class ProductRepository {
             ps.setString(1,nameProduct);
             rs = ps.executeQuery();
             if(!rs.next()){
+
 
             }
             productId = rs.getInt("ID");

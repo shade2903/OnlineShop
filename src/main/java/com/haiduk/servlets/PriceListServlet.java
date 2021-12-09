@@ -1,13 +1,18 @@
 package com.haiduk.servlets;
 
 
+import com.haiduk.config.SpringConfig;
 import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
 import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +28,8 @@ import java.util.List;
 public class PriceListServlet extends HttpServlet {
     private final static List<Product> listProduct = PriceList.getListProduct();
     private final static List<Product> clickList = new ArrayList<>();
+    AnnotationConfigApplicationContext  context = SpringConfig.getApplicationContext();
+    DataService service = (DataService) context.getBean("dataService");
 
 
     @Override
@@ -37,13 +44,9 @@ public class PriceListServlet extends HttpServlet {
         if(req.getParameter("userName") != null){
             session.setAttribute("userName", req.getParameter("userName"));
         }
-
         req.setAttribute("products", listProduct);
-        DataService service = new DataService();
         clickList.addAll(service.getSelect("mapKey",req));
         session.setAttribute("clickList", clickList);
-
-
         doGet(req,resp);
 
 
