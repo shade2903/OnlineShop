@@ -27,6 +27,10 @@ public class SqlHelper {
 
     public static void initDB(){
         try (PreparedStatement ps = connection.prepareStatement("" +
+                "DROP TABLE IF EXISTS ORDER_PRICE_LIST;\n" +
+                        "DROP TABLE IF EXISTS ORDERS;\n" +
+                        "DROP TABLE IF EXISTS PRICE_LIST;\n" +
+                        "DROP TABLE IF EXISTS USERS;" +
 
                 "CREATE TABLE USERS(\n" +
                 "ID INT PRIMARY KEY AUTO_INCREMENT,\n" +
