@@ -21,11 +21,7 @@
 <body>
 
 <div class="inner">
-    <%
-
-        String userName = (String) request.getAttribute("userName");
-
-    %>
+    <%String userName = (String) request.getAttribute("userName");%>
     <h1> Welcome <%out.print( userName + " !");%></h1>
 
     <form method="post" action="/product">
@@ -43,8 +39,7 @@
         <input class="input" type="submit" value="Add Item"/>
 
     </form>
-
-    <form method="post" action="/totalPriceList">
+    <form method="post" action="/basket">
 
         <input class="input" type="submit" value="Submit">
         <p>You have already chosen:</p>

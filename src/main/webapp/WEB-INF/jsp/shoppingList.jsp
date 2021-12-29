@@ -21,31 +21,13 @@
 </head>
 <body>
 <div class="inner">
-    <% AnnotationConfigApplicationContext context = SpringContext.getApplicationContext();
-        DataService service = (DataService) context.getBean("dataService");
-        UserRepository userRepository = (UserRepository) context.getBean("userRepository");
-        ProductService productService = (ProductService) context.getBean("productService");
-        OrderRepository orderRepository = (OrderRepository) context.getBean("orderRepository");
-        ProductRepository productRepository = (ProductRepository) context.getBean("productRepository");
-
-        userRepository.addUser((String) session.getAttribute("userName"));
-        ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("selectList");
-        int userId = userRepository.getIDbyName(session.getAttribute("userName").toString());
-        Integer num = 1;
-        Double total = productService.getTotalPrice(list);
-        orderRepository.addOrder(userId, total);
-        for (Product str : list) {
-            orderRepository.saveOrderPrice(orderRepository.getIdByUSerId(userId), str);
-        }
-    %>
-    <h1>Dear <%out.print(" " + session.getAttribute("userName") + ", ");%>you order:</h1>
+    <% Integer num = 1; %>
+    <h1>Dear <%out.print(" " + request.getAttribute("userName") + ", ");%>you order:</h1>
 
     <c:forEach var="product" items="${selectList}">
         <option><%=num++%>) ${product.name} (${product.price}$)</option>
-
-        <input type="hidden" name=selectList value="${product.name}">
     </c:forEach>
-    <% out.print("<div>" + "Total: $ " + total + " $</div>"); %>
+    <% out.print("<div>" + "Total: $ " + request.getAttribute("totalPrice") + " $</div>"); %>
 
 
 </div>

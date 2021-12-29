@@ -56,7 +56,42 @@ public class DataService {
         }
 
         return selectList;
+    }
+
+        public List<Product> getSelect(String str) {
+            selectList = new ArrayList<>();
+            if (str != null) {
+                for (Product s : priceList) {
+                    if (s.getName().equals(str)) {
+                        selectList.add(s);
+                    }
+                }
+            }
+
+            return selectList;
 
     }
+    public List<Product> getSelectBasket(String[] str){
+        name = new ArrayList<>();
+        selectList = new ArrayList<>();
+
+
+        if(str != null) {
+
+            for (String s : str) {
+                name.add(s);
+            }
+            for (int i = 0; i < name.size(); i++) {
+                for (Product x : priceList) {
+                    if ((x.getName()).equals(name.get(i))) {
+                        selectList.add(x);
+                    }
+                }
+            }
+            return selectList;
+        }
+        return null;
+    }
+
 
 }

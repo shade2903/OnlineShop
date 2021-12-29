@@ -44,7 +44,6 @@ public class UserRepository {
                 if(rs.getString("NAME").equals(name)){
                     return rs.getInt("id");
                 }
-                
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -85,10 +84,6 @@ public class UserRepository {
 
         return null;
     }
-
-
-
-
 }
 
 
