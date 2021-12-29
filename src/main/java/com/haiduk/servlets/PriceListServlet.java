@@ -1,18 +1,12 @@
 package com.haiduk.servlets;
 
 
-import com.haiduk.config.SpringConfig;
+import com.haiduk.config.SpringContext;
 import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
-import com.haiduk.repository.OrderRepository;
-import com.haiduk.repository.ProductRepository;
-import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,11 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet("/priceList")
+//@WebServlet("/priceList")
 public class PriceListServlet extends HttpServlet {
     private final static List<Product> listProduct = PriceList.getListProduct();
     private final static List<Product> clickList = new ArrayList<>();
-    AnnotationConfigApplicationContext  context = SpringConfig.getApplicationContext();
+    AnnotationConfigApplicationContext  context = SpringContext.getApplicationContext();
     DataService service = (DataService) context.getBean("dataService");
 
 

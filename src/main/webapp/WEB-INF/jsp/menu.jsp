@@ -1,3 +1,10 @@
+<%@ page import="org.springframework.context.annotation.AnnotationConfigApplicationContext" %>
+<%@ page import="com.haiduk.service.DataService" %>
+<%@ page import="com.haiduk.repository.UserRepository" %>
+<%@ page import="com.haiduk.service.ProductService" %>
+<%@ page import="com.haiduk.repository.OrderRepository" %>
+<%@ page import="com.haiduk.repository.ProductRepository" %>
+<%@ page import="com.haiduk.config.SpringContext" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="var" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,9 +21,14 @@
 <body>
 
 <div class="inner">
-    <h1> Welcome <%out.print(session.getAttribute("userName") + " !");%></h1>
+    <%
 
-    <form method="post" action="/priceList">
+        String userName = (String) request.getAttribute("userName");
+
+    %>
+    <h1> Welcome <%out.print( userName + " !");%></h1>
+
+    <form method="post" action="/product">
         <br/>
         <h3>Make you order</h3>
         <select class="input" name="mapKey">

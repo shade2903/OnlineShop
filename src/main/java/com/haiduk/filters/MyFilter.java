@@ -13,7 +13,7 @@ public class MyFilter implements Filter {
     public void destroy() {
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+  public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         if(request.getParameter("filter") == null){
             ((HttpServletResponse) resp).sendError(401);
@@ -25,7 +25,8 @@ public class MyFilter implements Filter {
 
 
 
-    }
+
+        }
 
     public void init(FilterConfig config) throws ServletException {
 

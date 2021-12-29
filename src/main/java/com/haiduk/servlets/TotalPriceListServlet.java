@@ -1,5 +1,5 @@
 package com.haiduk.servlets;
-import com.haiduk.config.SpringConfig;
+import com.haiduk.config.SpringContext;
 import com.haiduk.service.DataService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -22,7 +22,7 @@ public class TotalPriceListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AnnotationConfigApplicationContext context = SpringConfig.getApplicationContext();
+        AnnotationConfigApplicationContext context = SpringContext.getApplicationContext();
         DataService service = (DataService) context.getBean("dataService");
         req.getSession().setAttribute("selectList", service.getSelectPriceList("selectList",req));
         doGet(req, resp);

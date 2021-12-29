@@ -62,6 +62,32 @@ public class UserRepository {
         return -1;
     }
 
+    public static String getUserName(){
+        ResultSet rs = null;
+        try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS")) {
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getString("NAME");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+
+        }finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return null;
+    }
+
+
+
 
 }
 

@@ -2,7 +2,7 @@ package com.haiduk.config;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class SpringConfig {
+public class SpringContext {
 
     public static AnnotationConfigApplicationContext getApplicationContext() {
         return applicationContext;

@@ -8,7 +8,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.haiduk.repository.ProductRepository" %>
 <%@ page import="org.springframework.context.annotation.AnnotationConfigApplicationContext" %>
-<%@ page import="com.haiduk.config.SpringConfig" %>
+<%@ page import="com.haiduk.config.SpringContext" %>
 <%@ page import="com.haiduk.service.DataService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="inner">
-    <% AnnotationConfigApplicationContext context = SpringConfig.getApplicationContext();
+    <% AnnotationConfigApplicationContext context = SpringContext.getApplicationContext();
         DataService service = (DataService) context.getBean("dataService");
         UserRepository userRepository = (UserRepository) context.getBean("userRepository");
         ProductService productService = (ProductService) context.getBean("productService");
