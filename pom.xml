@@ -93,6 +93,13 @@
 
         </dependency>
 
+        <!-- Spring JDBC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
 
 
         <!-- End external libraries -->
