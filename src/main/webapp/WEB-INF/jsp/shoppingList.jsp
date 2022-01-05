@@ -31,5 +31,10 @@
 
 
 </div>
+<div class="inner">
+    <form  method="post" action="/logout">
+        <input class="input" type="submit" name="logout" value="logout">
+    </form>
+</div>
 </body>
 </html>

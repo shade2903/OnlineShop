@@ -6,7 +6,7 @@
 <body>
 <div class="box">
     <h1>404 Not found...</h1>
-    <a href="http://localhost:8099/hello"><h1>Start Page</h1> </a>
+    <a href="http://localhost:8099/login"><h1>Start Page</h1> </a>
 </div>
 </body>
 </html>

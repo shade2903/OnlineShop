@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +32,12 @@ public final class ProductController {
     }
 
     @RequestMapping("/product")
-    public String showMenu(@RequestParam(value = "userName", required = false) String name,@RequestParam(value = "mapKey", required = false) String select, ModelMap model) {
-        if(name!= null){
-            userRepository.addUser(name);
-        }
+    public String showMenu(Principal principal, @RequestParam(value = "userName", required = false) String name, @RequestParam(value = "mapKey", required = false) String select, ModelMap model) {
+
         if(select!=null){
             clickList.addAll(dataService.getSelect(select));
         }
-        model.addAttribute("userName",userRepository.getUserName());
+        model.addAttribute("userName",principal.getName());
         model.addAttribute("products", productRepository.getAll());
         model.addAttribute("clickList",clickList);
         return "menu";

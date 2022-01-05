@@ -5,6 +5,7 @@ import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -21,10 +22,7 @@ import java.sql.SQLException;
 @ComponentScan(basePackages = {"com.haiduk"})
 public class AppConfig {
 
-    @Bean
-    UserRepository userRepository() {
-        return new UserRepository();
-    }
+
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -39,11 +37,12 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSource() {
+
         EmbeddedDatabaseBuilder databaseBuilder = new EmbeddedDatabaseBuilder();
         return databaseBuilder
                 .setType(EmbeddedDatabaseType.H2)
-                .addScript("scripts/drop_table.sql")
                 .addScript("scripts/create_table.sql")
+                .addScript("scripts/insert_table.sql")
                 .setScriptEncoding("UTF-8")
                 .continueOnError(true)
                 .ignoreFailedDrops(true)

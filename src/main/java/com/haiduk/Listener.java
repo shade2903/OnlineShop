@@ -1,6 +1,6 @@
 package com.haiduk;
 
-import com.haiduk.sql.SqlHelper;
+
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -12,9 +12,9 @@ public class Listener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("STart Connection");
-        SqlHelper.initDB();
-//        SpringConfig.getApplicationContext();
+        System.out.println("Start Connection");
+//        SqlHelper.initDB();
+
 
     }
 

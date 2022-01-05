@@ -1,7 +1,9 @@
 package com.haiduk.repository;
 
 import com.haiduk.domain.Product;
+
 import com.haiduk.sql.SqlHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -14,6 +16,7 @@ import java.util.Map;
 
 @Repository
 public class UserRepository {
+
     private static Connection connection = SqlHelper.getConnection();
 
     public static void addUser(String name){

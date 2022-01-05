@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class DataService {
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
     private List<String> name;
     private List<Product> selectList;
     private List<Product> priceList = productRepository.getAll();

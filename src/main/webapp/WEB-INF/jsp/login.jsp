@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>First JSP</title>
+    <title>Login Page</title>
     <style>
         <%@include file="../css/style.css"%> >
     </style>
@@ -10,10 +10,10 @@
 <div class="inner">
     <h1> Welcome to online shop </h1>
 
-    <form method="post" action="/product">
-        <input class="input" required type="text" name="userName" placeholder="Username">
+    <form method="post" action="/login">
+        <input class="input" required type="text" name="userName" value="admin" placeholder="Username">
         <br/>
-        <input class="input" required type="text" name="password" placeholder="Password">
+        <input class="input" required type="password" name="password" value="admin" placeholder="Password">
         <div>
             <input type="checkbox" name="filter" value="true">
             <label>I agree with the terms of service</label>
@@ -21,6 +21,8 @@
         <input class="input" type="submit" value="Enter">
 
     </form>
+
+
 </div>
 
 </body>
