@@ -41,7 +41,8 @@ public final class LoginController {
 
 
 @RequestMapping("/login")
-public String login(Principal principal, @RequestParam(value = "userName",required = false) String name, ModelMap model){
+public String login(Principal principal, ModelMap model){
+
 
         if(principal != null) {
             System.out.println(UserRepository.getUserName());

@@ -32,8 +32,11 @@ public final class ProductController {
     }
 
     @RequestMapping("/product")
-    public String showMenu(Principal principal, @RequestParam(value = "userName", required = false) String name, @RequestParam(value = "mapKey", required = false) String select, ModelMap model) {
+    public String showMenu(Principal principal, @RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "mapKey", required = false) String select, ModelMap model) {
 
+        if(filter == null){
+            clickList.clear();
+        }
         if(select!=null){
             clickList.addAll(dataService.getSelect(select));
         }
