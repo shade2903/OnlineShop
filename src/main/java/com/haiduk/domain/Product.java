@@ -1,9 +1,22 @@
 package com.haiduk.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "GOODS")
 public class Product {
-    private String name;
-    private double price;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, nullable = false)
     private int id;
+
+    @Column(name="title",nullable = false,unique = true)
+    private String name;
+    @Column(name = "price",nullable = false)
+    private double price;
+
+
 
     public Product() {
     }

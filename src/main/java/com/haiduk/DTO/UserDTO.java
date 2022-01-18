@@ -1,43 +1,32 @@
-package com.haiduk.domain;
+package com.haiduk.DTO;
 
-import javax.persistence.*;
+import com.haiduk.domain.Order;
+
 import java.util.List;
 
-@Entity
-@Table(name = "USERS")
-public class User {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name = "ID", unique = true, nullable = false)
+public class UserDTO {
     private int id;
-
-@Column(name="NAME", unique = true, nullable = false)
     private String name;
-
-@Column(name="PASSWORD", nullable = false)
     private String password;
-@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> orders;
 
-    public User() {
+    public UserDTO() {
     }
 
     public int getId() {
         return id;
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getPassword() {

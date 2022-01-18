@@ -1,7 +1,6 @@
 package com.haiduk.controller;
 
 
-import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
@@ -32,12 +31,13 @@ public final class ProductController {
     }
 
     @RequestMapping("/product")
-    public String showMenu(Principal principal, @RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "mapKey", required = false) String select, ModelMap model) {
+    public String showMenu(Principal principal, @RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "select", required = false) String select, ModelMap model) {
 
         if(filter == null){
             clickList.clear();
         }
         if(select!=null){
+            System.out.println(select);
             clickList.addAll(dataService.getSelect(select));
         }
         model.addAttribute("userName",principal.getName());

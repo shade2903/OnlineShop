@@ -19,7 +19,7 @@ public class ProductRepository {
     public static List<Product> getAll(){
         List<Product> products = new ArrayList<>();
         ResultSet rs = null;
-        try(PreparedStatement ps = connection.prepareStatement("SELECT id, title, price FROM PRICE_LIST")) {
+        try(PreparedStatement ps = connection.prepareStatement("SELECT id, title, price FROM GOODS")) {
             rs = ps.executeQuery();
             while (rs.next()) {
                 products.add(new Product(rs.getString("title"), rs.getDouble("price"),rs.getInt("id")));
@@ -42,12 +42,10 @@ public class ProductRepository {
     public static int getIdByName(String nameProduct){
         ResultSet rs = null;
         int productId = -1;
-        try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE_LIST WHERE TITLE = ?")){
+        try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM GOODS WHERE TITLE = ?")){
             ps.setString(1,nameProduct);
             rs = ps.executeQuery();
             if(!rs.next()){
-
-
             }
             productId = rs.getInt("ID");
 

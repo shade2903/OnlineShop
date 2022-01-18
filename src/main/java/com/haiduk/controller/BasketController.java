@@ -35,6 +35,11 @@ public final class  BasketController {
 
 
         int userId = userRepository.getIDbyName(principal.getName());
+        for (String str : selectList
+             ) {
+            System.out.println(str);
+
+        }
         List<Product> basket = dataService.getSelectBasket(selectList);
         Double totalPrice = productService.getTotalPrice(basket);
 

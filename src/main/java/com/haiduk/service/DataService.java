@@ -1,17 +1,12 @@
 package com.haiduk.service;
 
-import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 

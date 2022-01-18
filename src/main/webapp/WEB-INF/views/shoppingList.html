@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" data-th-href="@{/css/style.css}">
+    <title>ORDER</title>
+</head>
+<body>
+<div class="inner">
+    <h1 th:text="'Dear ' +${userName} + ', you order:'"></h1>
+        <option th:each="product, cnt : ${selectList}" th:class="${cnt.count}"
+        th:text="${cnt.count} +') ' + ${product.name} + ' ' + ${product.price} + '$'"></option>
+       <div th:text="'Total: $ ' + ${totalPrice} + ' $'" ></div>
+</div>
+<div class="inner">
+    <form  method="post" action="/logout">
+        <input class="input" type="submit" name="logout" value="logout">
+    </form>
+</div>
+</body>
+</html>

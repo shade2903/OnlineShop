@@ -1,11 +1,11 @@
-package com.haiduk.domain;
+package com.haiduk.service;
 
+import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 public class PriceList {
 

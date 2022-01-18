@@ -38,7 +38,6 @@ public class OrderRepository {
         }
     }
     public static int getIdByUSerId(int userId){
-
         ResultSet rs = null;
         int orderId = -1;
         try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM ORDERS WHERE USER_ID = ?")){
@@ -66,7 +65,7 @@ public class OrderRepository {
     }
 
     public static void saveOrderPrice(int idOrder, Product product){
-        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO ORDER_PRICE_LIST (order_id, price_id) VALUES (?,?)")) {
+        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO ORDERS_GOODS (order_id, good_id) VALUES (?,?)")) {
             ps.setInt(1, idOrder);
             ps.setInt(2, product.getId());
             ps.execute();

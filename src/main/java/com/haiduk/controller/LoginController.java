@@ -1,7 +1,5 @@
 package com.haiduk.controller;
 
-import com.haiduk.domain.PriceList;
-import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public final class LoginController {
@@ -28,11 +23,6 @@ public final class LoginController {
          this.productRepository = productRepository;
 
      }
-
-
-
-
-
 
     @GetMapping("/")
     public String showToLoginPage(){
