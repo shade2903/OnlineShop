@@ -4,17 +4,25 @@ import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 
 public class DataService {
-    @Autowired
+
     private ProductRepository productRepository;
     private List<String> name;
     private List<Product> selectList;
+    @Autowired
+    public DataService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
+
+
     private List<Product> priceList = productRepository.getAll();
 
 

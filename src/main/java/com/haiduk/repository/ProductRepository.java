@@ -1,6 +1,8 @@
 package com.haiduk.repository;
 
 import com.haiduk.domain.Product;
+
+
 import com.haiduk.sql.SqlHelper;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ProductRepository {
+
 
 
     private  static SessionFactory sessionFactory;
