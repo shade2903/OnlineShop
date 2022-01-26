@@ -2,16 +2,38 @@ package com.haiduk.repository;
 
 import com.haiduk.domain.Product;
 import com.haiduk.sql.SqlHelper;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ProductRepository {
+
+
+    private  static SessionFactory sessionFactory;
+    
+
+    @Autowired
+    ProductRepository(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
+    }
+
+
+
+    public static List<Product> getAllHB() {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Product");
+        return query.list();
+    }
 
 
     private static Connection connection = SqlHelper.getConnection();
@@ -38,6 +60,7 @@ public class ProductRepository {
         }
         return products;
     }
+
 
     public static int getIdByName(String nameProduct){
         ResultSet rs = null;

@@ -1,5 +1,6 @@
 package com.haiduk.controller;
 
+import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.List;
 
+@Transactional
 @Controller
-public final class LoginController {
+public  class LoginController {
 
 
     private ProductRepository productRepository;
@@ -26,6 +30,8 @@ public final class LoginController {
 
     @GetMapping("/")
     public String showToLoginPage(){
+       
+
         return "login";
     }
 
@@ -33,13 +39,12 @@ public final class LoginController {
 @RequestMapping("/login")
 public String login(Principal principal, ModelMap model){
 
-
         if(principal != null) {
-            System.out.println(UserRepository.getUserName());
-            model.addAttribute("products", productRepository.getAll());
+            model.addAttribute("products", productRepository.getAllHB());
             model.addAttribute("userName", principal.getName());
             return "product";
         }
+
     return "login";
 
 }

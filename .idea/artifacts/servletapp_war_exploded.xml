@@ -27,7 +27,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.1.1.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.0.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:3.0.11.RELEASE" />
@@ -49,6 +49,9 @@
           <element id="library" level="project" name="Maven: org.dom4j:dom4j:2.1.1" />
           <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.4.Final" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:5.3.7.Final" />
+          <element id="library" level="project" name="Maven: org.modelmapper:modelmapper:2.3.8" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-dbcp:9.0.56" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.56" />
         </element>
       </element>
       <element id="directory" name="META-INF">

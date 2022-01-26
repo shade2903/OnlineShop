@@ -10,7 +10,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
-    int id;
+    private int id;
 
 
     @Column(name = "total_price")
@@ -30,8 +30,8 @@ public class Order {
         return products;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.products = productList;
+    public void setProductList(List<Product> products) {
+        this.products = products;
     }
 
     public int getId() {

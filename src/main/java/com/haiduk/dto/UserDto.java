@@ -1,16 +1,16 @@
-package com.haiduk.DTO;
+package com.haiduk.dto;
 
 import com.haiduk.domain.Order;
 
 import java.util.List;
 
-public class UserDTO {
+public class UserDto {
     private int id;
     private String name;
     private String password;
-    private List<Order> orders;
+    private List<OrderDto> orders;
 
-    public UserDTO() {
+    public UserDto() {
     }
 
     public int getId() {
@@ -37,11 +37,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public List<Order> getOrders() {
+    public List<OrderDto> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderDto> orders) {
         this.orders = orders;
     }
 }

@@ -20,20 +20,21 @@ import java.sql.SQLException;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.haiduk"})
+
 public class AppConfig {
 //    @Bean
-//    public DataSource dataSource() {
-//
-//        EmbeddedDatabaseBuilder databaseBuilder = new EmbeddedDatabaseBuilder();
-//        return databaseBuilder
-//                .setType(EmbeddedDatabaseType.H2)
-//                .addScript("scripts/create_table.sql")
-//                .addScript("scripts/insert_table.sql")
-//                .setScriptEncoding("UTF-8")
-//                .continueOnError(true)
-//                .ignoreFailedDrops(true)
-//                .build();
-//    }
+    public DataSource dataSource() {
+
+        EmbeddedDatabaseBuilder databaseBuilder = new EmbeddedDatabaseBuilder();
+        return databaseBuilder
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("scripts/create_table.sql")
+                .addScript("scripts/insert_table.sql")
+                .setScriptEncoding("UTF-8")
+                .continueOnError(true)
+                .ignoreFailedDrops(true)
+                .build();
+    }
 //
 //    @Bean
 //    Connection connection() {

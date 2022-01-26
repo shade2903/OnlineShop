@@ -12,34 +12,36 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional
 @Controller
-public final class  BasketController {
+public  class  BasketController {
     private OrderRepository orderRepository;
     private UserRepository userRepository;
     private ProductService productService;
     private DataService dataService;
 
+
     @Autowired
-    public BasketController(OrderRepository orderRepository,UserRepository userRepository, DataService dataService, ProductService productService) {
+    public BasketController(OrderRepository orderRepository,UserRepository userRepository, DataService dataService,
+                            ProductService productService) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.dataService = dataService;
         this.productService = productService;
+
     }
     @RequestMapping("/basket")
     public String showBasket(Principal principal, @RequestParam(value = "selectList", required = false) String[] selectList, ModelMap model){
 
 
         int userId = userRepository.getIDbyName(principal.getName());
-        for (String str : selectList
-             ) {
-            System.out.println(str);
 
-        }
+
         List<Product> basket = dataService.getSelectBasket(selectList);
         Double totalPrice = productService.getTotalPrice(basket);
 
@@ -50,7 +52,8 @@ public final class  BasketController {
         model.addAttribute("userName",principal.getName());
         model.addAttribute("selectList",basket);
         model.addAttribute("totalPrice",totalPrice);
-        return "shoppingList";
+
+                return "shoppingList";
     }
 
 }

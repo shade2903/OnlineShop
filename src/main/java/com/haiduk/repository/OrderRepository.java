@@ -65,7 +65,8 @@ public class OrderRepository {
     }
 
     public static void saveOrderPrice(int idOrder, Product product){
-        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO ORDERS_GOODS (order_id, good_id) VALUES (?,?)")) {
+        try (PreparedStatement ps = connection.prepareStatement
+                ("INSERT INTO ORDERS_GOODS (order_id, good_id) VALUES (?,?)")) {
             ps.setInt(1, idOrder);
             ps.setInt(2, product.getId());
             ps.execute();

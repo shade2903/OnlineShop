@@ -11,13 +11,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@Transactional
 
-public final class ProductController {
+public  class ProductController {
     private final static List<Product> clickList = new ArrayList<>();
     private ProductRepository productRepository;
     private UserRepository userRepository;
@@ -37,11 +39,10 @@ public final class ProductController {
             clickList.clear();
         }
         if(select!=null){
-            System.out.println(select);
             clickList.addAll(dataService.getSelect(select));
         }
         model.addAttribute("userName",principal.getName());
-        model.addAttribute("products", productRepository.getAll());
+        model.addAttribute("products", productRepository.getAllHB());
         model.addAttribute("clickList",clickList);
         return "menu";
     }
