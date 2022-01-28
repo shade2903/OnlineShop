@@ -87,6 +87,9 @@ public class OrderRepository {
         sessionFactory.getCurrentSession().save(order);
         return order;
     }
+    public void updateOrder(Order order) {
+        sessionFactory.getCurrentSession().update(order);
+    }
 
 
 }

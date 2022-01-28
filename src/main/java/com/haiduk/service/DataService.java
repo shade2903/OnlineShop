@@ -23,11 +23,6 @@ public class DataService {
         this.productService = productService;
     }
 
-
-
-
-
-
         public List<Product> getSelect(String str) {
             priceList = productService.getPriceList();
             selectList = new ArrayList<>();
