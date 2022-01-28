@@ -6,6 +6,7 @@ import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
 import com.haiduk.service.ProductService;
+import com.haiduk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,28 +23,25 @@ import java.util.List;
 @Controller
 public  class  BasketController {
     private OrderRepository orderRepository;
-    private UserRepository userRepository;
     private ProductService productService;
     private DataService dataService;
+    private UserService userService;
 
 
     @Autowired
-    public BasketController(OrderRepository orderRepository,UserRepository userRepository, DataService dataService,
-                            ProductService productService) {
+    public BasketController(OrderRepository orderRepository, DataService dataService,
+                            ProductService productService, UserService userService) {
         this.orderRepository = orderRepository;
-        this.userRepository = userRepository;
         this.dataService = dataService;
         this.productService = productService;
+        this.userService = userService;
 
     }
     @RequestMapping("/basket")
     public String showBasket(Principal principal, @RequestParam(value = "selectList", required = false) String[] selectList, ModelMap model){
 
 
-        int userId = userRepository.getIDbyName(principal.getName());
-//        System.out.println(userRepository.getIDbyNameHB(principal.getName()));
-
-
+       int userId = userService.getUserByLogin(principal.getName()).getId();
         List<Product> basket = dataService.getSelectBasket(selectList);
         Double totalPrice = productService.getTotalPrice(basket);
 

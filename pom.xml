@@ -142,6 +142,13 @@
             <artifactId>hibernate-commons-annotations</artifactId>
             <version>5.1.0.Final</version>
         </dependency>
+        <!-- Orika -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+        
 
 
 

@@ -23,7 +23,7 @@ public class ProductRepository {
 
 
 
-    private  static SessionFactory sessionFactory;
+    private   SessionFactory sessionFactory;
     
 
     @Autowired
@@ -31,63 +31,18 @@ public class ProductRepository {
         this.sessionFactory = sessionFactory;
     }
 
-
-
-    public static List<Product> getAllHB() {
+    public  List<Product> getAllHB() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Product");
         return query.list();
     }
-
-
-    private static Connection connection = SqlHelper.getConnection();
-
-    public static List<Product> getAll(){
-        List<Product> products = new ArrayList<>();
-        ResultSet rs = null;
-        try(PreparedStatement ps = connection.prepareStatement("SELECT id, title, price FROM GOODS")) {
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                products.add(new Product(rs.getString("title"), rs.getDouble("price"),rs.getInt("id")));
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-
-        }finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return products;
+    public Product getById(int id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Product p where p.id = :id");
+        query.setParameter("id", id);
+        return (Product) query.list().get(0);
     }
-
-
-    public static int getIdByName(String nameProduct){
-        ResultSet rs = null;
-        int productId = -1;
-        try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM GOODS WHERE TITLE = ?")){
-            ps.setString(1,nameProduct);
-            rs = ps.executeQuery();
-            if(!rs.next()){
-            }
-            productId = rs.getInt("ID");
-
-
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return productId;
+    public  Product getByName(String name) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Product p where p.name = :name");
+        query.setParameter("name", name);
+        return (Product) query.list().get(0);
     }
 }

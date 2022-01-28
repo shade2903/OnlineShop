@@ -14,20 +14,22 @@ import java.util.List;
 
 public class DataService {
 
-    private ProductRepository productRepository;
+    private ProductService productService;
     private List<String> name;
     private List<Product> selectList;
+    private List<Product> priceList;
     @Autowired
-    public DataService(ProductRepository productRepository){
-        this.productRepository = productRepository;
+    public DataService(ProductService productService){
+        this.productService = productService;
     }
 
 
-    private List<Product> priceList = productRepository.getAll();
+
 
 
 
         public List<Product> getSelect(String str) {
+            priceList = productService.getPriceList();
             selectList = new ArrayList<>();
             if (str != null) {
                 for (Product s : priceList) {
@@ -41,6 +43,7 @@ public class DataService {
 
     }
     public List<Product> getSelectBasket(String[] str){
+        priceList = productService.getPriceList();
         name = new ArrayList<>();
         selectList = new ArrayList<>();
 

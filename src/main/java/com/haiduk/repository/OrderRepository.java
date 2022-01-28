@@ -1,8 +1,10 @@
 package com.haiduk.repository;
 
+import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 
 import com.haiduk.sql.SqlHelper;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +17,16 @@ import java.sql.SQLException;
 public class OrderRepository {
 
 
-   private static Connection connection = SqlHelper.getConnection();
+   private SessionFactory sessionFactory;
+   OrderRepository (SessionFactory sessionFactory){
+       this.sessionFactory = sessionFactory;
+   }
 
 
-    public static void addOrder(int user_id, Double totalPrice) {
+   private  Connection connection = SqlHelper.getConnection();
+
+
+    public  void addOrder(int user_id, Double totalPrice) {
 
         ResultSet rs = null;
         try (PreparedStatement ps = connection.prepareStatement("INSERT INTO ORDERS (user_id,total_price) VALUES (?,?)")) {
@@ -37,7 +45,7 @@ public class OrderRepository {
             }
         }
     }
-    public static int getIdByUSerId(int userId){
+    public  int getIdByUSerId(int userId){
         ResultSet rs = null;
         int orderId = -1;
         try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM ORDERS WHERE USER_ID = ?")){
@@ -64,7 +72,7 @@ public class OrderRepository {
 
     }
 
-    public static void saveOrderPrice(int idOrder, Product product){
+    public  void saveOrderPrice(int idOrder, Product product){
         try (PreparedStatement ps = connection.prepareStatement
                 ("INSERT INTO ORDERS_GOODS (order_id, good_id) VALUES (?,?)")) {
             ps.setInt(1, idOrder);
@@ -73,6 +81,11 @@ public class OrderRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Order save(Order order) {
+        sessionFactory.getCurrentSession().save(order);
+        return order;
     }
 
 

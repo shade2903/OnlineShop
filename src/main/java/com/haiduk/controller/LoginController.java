@@ -3,6 +3,7 @@ package com.haiduk.controller;
 import com.haiduk.domain.Product;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
+import com.haiduk.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +21,12 @@ import java.util.List;
 public  class LoginController {
 
 
-    private ProductRepository productRepository;
+    private ProductService productService;
 
 
     @Autowired
-     public LoginController(ProductRepository productRepository){
-         this.productRepository = productRepository;
+     public LoginController(ProductService productService){
+         this.productService = productService;
 
      }
 
@@ -41,7 +42,7 @@ public  class LoginController {
 public String login(Principal principal, ModelMap model){
 
         if(principal != null) {
-            model.addAttribute("products", productRepository.getAllHB());
+            model.addAttribute("products", productService.getPriceList());
             model.addAttribute("userName", principal.getName());
             return "product";
         }
