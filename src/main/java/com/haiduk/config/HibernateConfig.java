@@ -30,8 +30,8 @@ import java.util.Properties;
 public class HibernateConfig {
 
 
-
     private Environment environment;
+
     @Autowired
     public void setEnvironment(Environment environment) {
         this.environment = environment;
@@ -52,15 +52,15 @@ public class HibernateConfig {
     }
 
 //    @Bean
-//    public DataSource dataSource(){
+//    public DataSource dataSource() {
 //        BasicDataSource dataSource = new BasicDataSource();
 //        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
 //        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
 //        dataSource.setUsername(environment.getRequiredProperty("jdbc.user"));
 //        dataSource.setPassword(environment.getRequiredProperty("jdbc.pass"));
-//
-//
+//return dataSource;
 //    }
+
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
@@ -77,10 +77,10 @@ public class HibernateConfig {
         return transactionManager;
     }
 
-    private Properties hibernateProperties(){
+    private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect",environment.getRequiredProperty("hibernate.dialect"));
-        properties.put("hibernate.show_sql",environment.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         return properties;
 
 

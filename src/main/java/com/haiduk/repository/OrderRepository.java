@@ -83,9 +83,9 @@ public class OrderRepository {
         }
     }
 
-    public Order save(Order order) {
+    public void save(Order order) {
         sessionFactory.getCurrentSession().save(order);
-        return order;
+
     }
     public void updateOrder(Order order) {
         sessionFactory.getCurrentSession().update(order);

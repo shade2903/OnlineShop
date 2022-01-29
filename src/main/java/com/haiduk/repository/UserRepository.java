@@ -1,6 +1,7 @@
 package com.haiduk.repository;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -32,11 +33,8 @@ public class UserRepository {
     public User getByName(String name){
         Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.name = :name");
         query.setParameter("name",name);
-
-
-        return (User) query.list().get(0);
-
-
+        List users =  query.list();
+        return (User) users.get(0);
     }
     public User getById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from User u where u.id = :id");
@@ -49,7 +47,10 @@ public class UserRepository {
         return query.list();
     }
 
-
+//    public User getByName(String name) {
+//        Session session = sessionFactory.getCurrentSession();
+//        return session.get(User.class, name);
+//    }
 
 }
 

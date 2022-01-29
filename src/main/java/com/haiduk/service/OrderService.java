@@ -30,17 +30,26 @@ public class OrderService {
         Double totalPrice;
         Order order;
         Product selectProduct = productRepository.getByName(select);
-        if (user.getOrders() == null) {
+        if (user.getOrders().size() == 0) {
              order = new Order();
              products = new ArrayList<>();
             products.add(selectProduct);
             totalPrice = selectProduct.getPrice();
-            order.setUser(user);
+            System.out.println("TEST1");
+
             order.setProductList(products);
             order.setTotalPrice(totalPrice);
-            orderRepository.save(order);
 
-        }else if(user.getOrders() != null){
+            System.out.println("TEST2");
+            List<Order> orders = new ArrayList<>();
+            orders.add(order);
+            System.out.println("TEST3");
+            order.setUser(user);
+
+            System.out.println(user.getOrders());
+            System.out.println(order);
+            orderRepository.updateOrder(order);
+        }else if(user.getOrders().size() !=0){
             order = user.getOrders().get(0);
             products = order.getProductList();
             products.add(selectProduct);

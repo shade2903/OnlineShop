@@ -57,10 +57,11 @@ public class ProductController {
 
         if (select != null) {
             user = userService.getUserByLogin(principal.getName());
+            System.out.println(user + " This current User!!! from service");
             orderService.addProductToOrder(user, select);
         }
 
-        System.out.println(userRepository.getById(1));
+
         model.addAttribute("userName", principal.getName());
         model.addAttribute("products", productService.getPriceList());
 //        model.addAttribute("clickList",clickList);
