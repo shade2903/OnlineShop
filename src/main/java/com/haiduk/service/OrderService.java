@@ -9,9 +9,10 @@ import com.haiduk.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-
+@Transactional
 @Service
 public class OrderService {
 
@@ -24,11 +25,11 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public void addProductToOrder(User user, String[] select) {
+    public void addProductToOrder(User user, String select) {
         List<Product> products;
         Double totalPrice;
         Order order;
-        Product selectProduct = productRepository.getByName(select[0]);
+        Product selectProduct = productRepository.getByName(select);
         if (user.getOrders() == null) {
              order = new Order();
              products = new ArrayList<>();
@@ -47,21 +48,17 @@ public class OrderService {
             order.setTotalPrice(totalPrice);
             order.setProductList(products);
             orderRepository.updateOrder(order);
-
-
         }
-
-
-
-
     }
-
     public Double getTotalPrice(List<Product> totalPriceList) {
         Double totalPrice = 0.0;
         for (Product product : totalPriceList) {
             totalPrice += product.getPrice();
         }
         return totalPrice;
+    }
+    public Order getOrder(User user){
+        return user.getOrders().get(0);
     }
 
 

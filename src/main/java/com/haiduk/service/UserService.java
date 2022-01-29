@@ -4,7 +4,9 @@ import com.haiduk.domain.User;
 import com.haiduk.exception.IncorrectDataException;
 import com.haiduk.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class UserService {
     private UserRepository userRepository;
