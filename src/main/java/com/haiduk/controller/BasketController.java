@@ -1,6 +1,7 @@
 package com.haiduk.controller;
 
 import com.haiduk.domain.Product;
+import com.haiduk.domain.User;
 import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
@@ -22,38 +23,27 @@ import java.util.List;
 @Transactional
 @Controller
 public  class  BasketController {
-    private OrderRepository orderRepository;
-    private ProductService productService;
-    private DataService dataService;
+
     private UserService userService;
 
 
     @Autowired
-    public BasketController(OrderRepository orderRepository, DataService dataService,
-                            ProductService productService, UserService userService) {
-        this.orderRepository = orderRepository;
-        this.dataService = dataService;
-        this.productService = productService;
+    public BasketController( UserService userService) {
+
         this.userService = userService;
 
     }
     @RequestMapping("/basket")
     public String showBasket(Principal principal, @RequestParam(value = "selectList", required = false) String[] selectList, ModelMap model){
 
-
-       int userId = userService.getUserByLogin(principal.getName()).getId();
-        List<Product> basket = dataService.getSelectBasket(selectList);
-        Double totalPrice = productService.getTotalPrice(basket);
-
-        orderRepository.addOrder(userId, totalPrice);
-        for (Product str : basket) {
-            orderRepository.saveOrderPrice(orderRepository.getIdByUSerId(userId), str);
-        }
+        User user = userService.getUserByLogin(principal.getName());
+        List<Product> selectProduct = user.getOrders().get(user.getOrders().size() - 1).getProductList();
+        Double totalPrice = user.getOrders().get(user.getOrders().size() - 1).getTotalPrice();
         model.addAttribute("userName",principal.getName());
-        model.addAttribute("selectList",basket);
+        System.out.println(user.getOrders().get(user.getOrders().size() - 1).getProductList());
+        model.addAttribute("selectList",selectProduct);
         model.addAttribute("totalPrice",totalPrice);
-
-                return "shoppingList";
+        return "shoppingList";
     }
 
 }

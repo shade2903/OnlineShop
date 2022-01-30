@@ -4,6 +4,7 @@ package com.haiduk.service;
 import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
+import com.haiduk.exception.UserNotFoundException;
 import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,35 +30,17 @@ public class OrderService {
         List<Product> products;
         Double totalPrice;
         Order order;
-        Product selectProduct = productRepository.getByName(select);
-        if (user.getOrders().size() == 0) {
-             order = new Order();
-             products = new ArrayList<>();
-            products.add(selectProduct);
-            totalPrice = selectProduct.getPrice();
-            System.out.println("TEST1");
-
-            order.setProductList(products);
-            order.setTotalPrice(totalPrice);
-
-            System.out.println("TEST2");
-            List<Order> orders = new ArrayList<>();
-            orders.add(order);
-            System.out.println("TEST3");
-            order.setUser(user);
-
-            System.out.println(user.getOrders());
-            System.out.println(order);
-            orderRepository.updateOrder(order);
-        }else if(user.getOrders().size() !=0){
-            order = user.getOrders().get(0);
+        Product selectProduct = (productRepository.getById(Integer.parseInt(select)));
+         if(user.getOrders().size() !=0){
+            order = user.getOrders().get(user.getOrders().size() - 1);
             products = order.getProductList();
             products.add(selectProduct);
             totalPrice = getTotalPrice(products);
             order.setTotalPrice(totalPrice);
             order.setProductList(products);
             orderRepository.updateOrder(order);
-        }
+             System.out.println(order.getId() + " Order Id");
+         }
     }
     public Double getTotalPrice(List<Product> totalPriceList) {
         Double totalPrice = 0.0;
@@ -67,7 +50,16 @@ public class OrderService {
         return totalPrice;
     }
     public Order getOrder(User user){
-        return user.getOrders().get(0);
+        if(user != null){
+
+            return user.getOrders().get(user.getOrders().size()-1);
+        }
+
+        throw new UserNotFoundException("User not found in database");
+    }
+    public List<Product> getAllOrderProduct(User user){
+
+        return user.getOrders().get(user.getOrders().size()-1).getProductList();
     }
 
 

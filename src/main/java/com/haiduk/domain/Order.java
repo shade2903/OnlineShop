@@ -21,8 +21,8 @@ public class Order {
     private User user;
 
 
-     @ManyToMany
-     @JoinTable(name="ORDERS_GOODS", joinColumns = @JoinColumn(name = "oder_id"),
+     @ManyToMany(fetch = FetchType.LAZY)
+     @JoinTable(name="ORDERS_GOODS", joinColumns = @JoinColumn(name = "order_id"),
      inverseJoinColumns = @JoinColumn(name="good_id"))
     private List<Product> products;
 
@@ -58,15 +58,7 @@ public class Order {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", totalPrice=" + totalPrice +
-                ", user=" + user +
-                ", products=" + products +
-                '}';
-    }
+
 }
 
 

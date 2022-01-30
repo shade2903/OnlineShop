@@ -15,7 +15,7 @@
         <select class="input" name="select">
             <option th:each="product: ${products}"
                     th:text="${product.name} + ' ' + ${product.price} + '$'"
-                    th:value="${product.name}"></option>
+                    th:value="${product.id}"></option>
 
             <input type="hidden" name="filter" value="true">
 
