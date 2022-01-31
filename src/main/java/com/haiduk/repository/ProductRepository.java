@@ -20,11 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ProductRepository {
-
-
-
     private   SessionFactory sessionFactory;
-    
 
     @Autowired
     ProductRepository(SessionFactory sessionFactory){

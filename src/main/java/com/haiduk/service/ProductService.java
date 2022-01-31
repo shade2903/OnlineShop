@@ -15,14 +15,6 @@ public class ProductService {
   ProductService(ProductRepository productRepository){
       this.productRepository = productRepository;
   }
-
-     public  Double getTotalPrice(List<Product> totalPriceList){
-        Double totalPrice= 0.0;
-        for(Product product : totalPriceList){
-            totalPrice += product.getPrice();
-        }
-        return totalPrice;
-    }
     public List<Product> getPriceList() {
         return productRepository.getAllHB();
     }

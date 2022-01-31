@@ -47,10 +47,6 @@ public class UserRepository {
         return query.list();
     }
 
-//    public User getByName(String name) {
-//        Session session = sessionFactory.getCurrentSession();
-//        return session.get(User.class, name);
-//    }
 
 }
 

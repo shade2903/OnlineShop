@@ -13,9 +13,6 @@ public class Listener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Start Connection");
-
-
-
     }
 
     @Override

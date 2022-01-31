@@ -23,41 +23,7 @@ public class DataService {
         this.productService = productService;
     }
 
-        public List<Product> getSelect(String str) {
-            priceList = productService.getPriceList();
-            selectList = new ArrayList<>();
-            if (str != null) {
-                for (Product s : priceList) {
-                    if (s.getName().equals(str)) {
-                        selectList.add(s);
-                    }
-                }
-            }
 
-            return selectList;
-
-    }
-    public List<Product> getSelectBasket(String[] str){
-        priceList = productService.getPriceList();
-        name = new ArrayList<>();
-        selectList = new ArrayList<>();
-
-        if(str != null) {
-
-            for (String s : str) {
-                name.add(s);
-            }
-            for (int i = 0; i < name.size(); i++) {
-                for (Product x : priceList) {
-                    if ((x.getName()).equals(name.get(i))) {
-                        selectList.add(x);
-                    }
-                }
-            }
-            return selectList;
-        }
-        return null;
-    }
 
 
 }

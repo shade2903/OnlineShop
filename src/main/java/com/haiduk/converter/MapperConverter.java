@@ -1,6 +1,8 @@
 package com.haiduk.converter;
 
+import ma.glasnost.orika.MapperFacade;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public interface MapperConverter<E,T> {
-    E toDto(T entity);
-    T toEntity(E dto);
+
 }

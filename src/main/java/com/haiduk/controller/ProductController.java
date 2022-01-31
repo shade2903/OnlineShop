@@ -49,9 +49,7 @@ public class ProductController {
         User user = userService.getUserByLogin(principal.getName());
 
         List<Product> selectlist = user.getOrders().get(user.getOrders().size() - 1).getProductList();
-
         if (select != null) {
-
             orderService.addProductToOrder(user, select);
         }
 
