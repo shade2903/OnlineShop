@@ -50,31 +50,14 @@ public class ProductController {
 
         User user = userService.getUserByLogin(principal.getName());
         List<Product> selectlist = null;
-        if(select == null){
-            selectlist = null;
-            Order order = new Order();
-            order.setUser(user);
-            List<Order> orders = user.getOrders();
-            orders.add(order);
-            user.setOrders(orders);
-            userRepository.updateUser(user);
-
-
-
-        }
-//        orderService.addProductToOrder(user, select);
-
-
         if (select != null) {
-
-           selectlist =  user.getOrders().get(user.getOrders().size() - 1).getProductList();
+            selectlist =  orderService.getOrder(user).getProductList();
             orderService.addProductToOrder(user, select);
+            System.out.println(orderService.getOrder(user));
         }
-
 
         model.addAttribute("userName", principal.getName());
         model.addAttribute("products", productService.getPriceList());
-//        System.out.println(user.getOrders().get(user.getOrders().size() - 1).getProductList());
         model.addAttribute("clickList", selectlist);
         return "menu";
     }

@@ -58,7 +58,15 @@ public class Order {
         this.user = user;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", totalPrice=" + totalPrice +
+                ", user=" + user +
+                ", products=" + products +
+                '}';
+    }
 }
 
 

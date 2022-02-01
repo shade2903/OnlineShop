@@ -7,10 +7,12 @@
 </head>
 <body>
 <div class="inner">
-    <h1 th:text="'Dear ' +${userName} + ', you order:'"></h1>
-        <option th:each="product, cnt : ${selectList}" th:class="${cnt.count}"
-        th:text="${cnt.count} +') ' + ${product.name} + ' ' + ${product.price} + '$'"></option>
-       <div th:text="'Total: $ ' + ${totalPrice} + ' $'" ></div>
+
+    <h1 th:text="'Dear ' +${order.user.name} + ', you order:'"></h1>
+        <option th:each="product, cnt : ${order.ProductList}" th:class="${cnt.count}"
+                th:text="${cnt.count} +') ' + ${product.name} + ' ' + ${product.price} + '$'"></option>
+
+       <div th:text="'Total: $ ' + ${order.totalPrice} + ' $'" ></div>
 </div>
 <div class="inner">
     <form  method="post" action="/logout">

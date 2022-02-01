@@ -1,9 +1,11 @@
 package com.haiduk.service;
 
 
+import com.haiduk.converter.OrderMapper;
 import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
+import com.haiduk.dto.OrderDto;
 import com.haiduk.exception.UserNotFoundException;
 import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
@@ -19,30 +21,29 @@ public class OrderService {
 
     private ProductRepository productRepository;
     private OrderRepository orderRepository;
+    private OrderMapper orderMapper;
 
     @Autowired
-    OrderService(ProductRepository productRepository, OrderRepository orderRepository) {
+    OrderService(ProductRepository productRepository, OrderRepository orderRepository,OrderMapper orderMapper) {
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
+        this.orderMapper = orderMapper;
     }
 
     public void addProductToOrder(User user, String select) {
         List<Product> products;
-        Double totalPrice;
         Order order;
         Product selectProduct = (productRepository.getById(Integer.parseInt(select)));
-
          if(user.getOrders().size() !=0){
-            order = user.getOrders().get(user.getOrders().size() - 1);
+            order = getCurrentOrder(user);
             products = order.getProductList();
             products.add(selectProduct);
-            totalPrice = getTotalPrice(products);
-            order.setTotalPrice(totalPrice);
+            order.setTotalPrice(getTotalPrice(products));
             order.setProductList(products);
             orderRepository.updateOrder(order);
-             System.out.println(order.getId() + " Order Id");
          }
     }
+
     public Double getTotalPrice(List<Product> totalPriceList) {
         Double totalPrice = 0.0;
         for (Product product : totalPriceList) {
@@ -60,7 +61,14 @@ public class OrderService {
     }
     public List<Product> getAllOrderProduct(User user){
 
-        return user.getOrders().get(user.getOrders().size()-1).getProductList();
+        return getCurrentOrder(user).getProductList();
+    }
+    public OrderDto getOrderDto(Order order){
+        return orderMapper.toDto(order);
+    }
+
+    private Order getCurrentOrder(User user){
+        return user.getOrders().get(user.getOrders().size() - 1);
     }
 
 

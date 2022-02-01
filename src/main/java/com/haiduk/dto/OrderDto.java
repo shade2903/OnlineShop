@@ -42,4 +42,14 @@ public class OrderDto {
     public void setProductsDTO(List<ProductDto> productsDTO) {
         this.productsDTO = productsDTO;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDto{" +
+                "id=" + id +
+                ", totalPrice=" + totalPrice +
+                ", userDTO=" + userDTO +
+                ", productsDTO=" + productsDTO +
+                '}';
+    }
 }

@@ -56,14 +56,6 @@ public class User {
         this.orders = orders;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", orders=" + orders +
-                '}';
-    }
+
 }
 

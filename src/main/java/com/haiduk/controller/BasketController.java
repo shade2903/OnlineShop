@@ -6,6 +6,7 @@ import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
+import com.haiduk.service.OrderService;
 import com.haiduk.service.ProductService;
 import com.haiduk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,24 +26,24 @@ import java.util.List;
 public  class  BasketController {
 
     private UserService userService;
+    private OrderService orderService;
+
 
 
     @Autowired
-    public BasketController( UserService userService) {
+    public BasketController( UserService userService, OrderService orderService) {
 
         this.userService = userService;
+        this.orderService = orderService;
+
 
     }
     @RequestMapping("/basket")
-    public String showBasket(Principal principal, @RequestParam(value = "selectList", required = false) String[] selectList, ModelMap model){
+    public String showBasket(Principal principal,  ModelMap model){
+        System.out.println(orderService.getOrder(userService.getUserByLogin(principal.getName())));
+        model.addAttribute("order",orderService.getOrder(userService.getUserByLogin(principal.getName())));
 
-        User user = userService.getUserByLogin(principal.getName());
-        List<Product> selectProduct = user.getOrders().get(user.getOrders().size() - 1).getProductList();
-        Double totalPrice = user.getOrders().get(user.getOrders().size() - 1).getTotalPrice();
-        model.addAttribute("userName",principal.getName());
-        System.out.println(user.getOrders().get(user.getOrders().size() - 1).getProductList());
-        model.addAttribute("selectList",selectProduct);
-        model.addAttribute("totalPrice",totalPrice);
+        System.out.println(orderService.getOrderDto(orderService.getOrder(userService.getUserByLogin(principal.getName()))));
         return "shoppingList";
     }
 
