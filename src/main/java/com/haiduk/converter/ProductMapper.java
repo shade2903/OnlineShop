@@ -1,27 +1,30 @@
 package com.haiduk.converter;
 
+import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
+import com.haiduk.dto.OrderDto;
 import com.haiduk.dto.ProductDto;
+import ma.glasnost.orika.MapperFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class ProductMapper  {
 
-    public ProductDto toDto(Product product) {
-        ProductDto productDto = new ProductDto();
-        productDto.setId(product.getId());
-        productDto.setPrice(product.getPrice());
-        productDto.setName(product.getName());
-        return productDto;
+    private MapperFacade mapperFacade;
+    @Autowired
+    public ProductMapper(MapperFacade mapperFacade){
+        this.mapperFacade = mapperFacade;
     }
 
 
-    public Product toEntity(ProductDto productDto) {
-        Product product = new Product();
-        product.setId(productDto.getId());
-        product.setName(productDto.getName());
-        product.setPrice(productDto.getPrice());
 
-        return product;
+    public ProductDto toDto(Product entity) {
+
+        return mapperFacade.map(entity, ProductDto.class);
+    }
+
+    public Product fromDto(ProductDto dto) {
+        return mapperFacade.map(dto, Product.class);
     }
 }

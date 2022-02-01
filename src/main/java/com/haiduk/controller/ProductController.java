@@ -4,6 +4,7 @@ package com.haiduk.controller;
 import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
+import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
 import com.haiduk.service.DataService;
@@ -31,32 +32,49 @@ public class ProductController {
     private OrderService orderService;
     private UserService userService;
     private UserRepository userRepository;
+    private OrderRepository orderRepository;
+
 
     @Autowired
     public ProductController( ProductService productService, OrderService orderService,
-                             UserService userService, UserRepository userRepository) {
-
-
+                             UserService userService, UserRepository userRepository, OrderRepository orderRepository) {
         this.productService = productService;
         this.orderService = orderService;
         this.userService = userService;
         this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
     }
 
     @RequestMapping("/product")
     public String showMenu(Principal principal, @RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "select", required = false) String select, ModelMap model) {
 
         User user = userService.getUserByLogin(principal.getName());
+        List<Product> selectlist = null;
+        if(select == null){
+            selectlist = null;
+            Order order = new Order();
+            order.setUser(user);
+            List<Order> orders = user.getOrders();
+            orders.add(order);
+            user.setOrders(orders);
+            userRepository.updateUser(user);
 
-        List<Product> selectlist = user.getOrders().get(user.getOrders().size() - 1).getProductList();
+
+
+        }
+//        orderService.addProductToOrder(user, select);
+
+
         if (select != null) {
+
+           selectlist =  user.getOrders().get(user.getOrders().size() - 1).getProductList();
             orderService.addProductToOrder(user, select);
         }
 
 
         model.addAttribute("userName", principal.getName());
         model.addAttribute("products", productService.getPriceList());
-        System.out.println(user.getOrders().get(user.getOrders().size() - 1).getProductList());
+//        System.out.println(user.getOrders().get(user.getOrders().size() - 1).getProductList());
         model.addAttribute("clickList", selectlist);
         return "menu";
     }

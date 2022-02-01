@@ -1,4 +1,5 @@
 package com.haiduk.repository;
+import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
 import org.hibernate.Session;
@@ -22,6 +23,9 @@ public class UserRepository {
     public  User save(User user){
         sessionFactory.getCurrentSession().save(user);
         return user;
+    }
+    public void updateUser(User user) {
+        sessionFactory.getCurrentSession().update(user);
     }
 
     public  Integer getIDbyName(String name){

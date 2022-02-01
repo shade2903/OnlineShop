@@ -31,6 +31,7 @@ public class OrderService {
         Double totalPrice;
         Order order;
         Product selectProduct = (productRepository.getById(Integer.parseInt(select)));
+
          if(user.getOrders().size() !=0){
             order = user.getOrders().get(user.getOrders().size() - 1);
             products = order.getProductList();
