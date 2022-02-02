@@ -6,17 +6,17 @@ import java.util.List;
 @Entity
 @Table(name = "USERS")
 public class User {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name = "ID", unique = true, nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
     private int id;
 
-@Column(name="NAME", unique = true, nullable = false)
+    @Column(name = "NAME", unique = true, nullable = false)
     private String name;
 
-@Column(name="PASSWORD", nullable = false)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
-@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Order> orders;
 
     public User() {

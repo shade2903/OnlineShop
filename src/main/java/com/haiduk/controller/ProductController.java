@@ -49,11 +49,19 @@ public class ProductController {
     public String showMenu(Principal principal, @RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "select", required = false) String select, ModelMap model) {
 
         User user = userService.getUserByLogin(principal.getName());
+        orderService.addProductToOrder(user, select);
+        if(select == null && user.getOrders().size() != 0){
+            Order order = new Order();
+            order.setUser(user);
+            orderRepository.save(order);
+        }
+
         List<Product> selectlist = null;
         if (select != null) {
+
+
             selectlist =  orderService.getOrder(user).getProductList();
-            orderService.addProductToOrder(user, select);
-            System.out.println(orderService.getOrder(user));
+
         }
 
         model.addAttribute("userName", principal.getName());

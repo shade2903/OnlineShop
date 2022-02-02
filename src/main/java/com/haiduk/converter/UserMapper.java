@@ -9,23 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserMapper extends MapperConverterClass<User,UserDto>{
 
 
-    private MapperFacade mapperFacade;
-    @Autowired
-    public UserMapper(MapperFacade mapperFacade){
-        this.mapperFacade = mapperFacade;
+    @Override
+    Class<UserDto> getDomainClass() {
+        return UserDto.class;
     }
 
-
-
-    public UserDto toDto(User entity) {
-
-        return mapperFacade.map(entity, UserDto.class);
-    }
-
-    public User fromDto(UserDto dto) {
-        return mapperFacade.map(dto, User.class);
+    @Override
+    Class<User> getEntityClass() {
+        return User.class;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "ORDERS")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private int id;
 
@@ -16,14 +16,14 @@ public class Order {
     @Column(name = "total_price")
     private double totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
 
-     @ManyToMany(fetch = FetchType.LAZY)
-     @JoinTable(name="ORDERS_GOODS", joinColumns = @JoinColumn(name = "order_id"),
-     inverseJoinColumns = @JoinColumn(name="good_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ORDERS_GOODS", joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "good_id"))
     private List<Product> products;
 
     public List<Product> getProductList() {

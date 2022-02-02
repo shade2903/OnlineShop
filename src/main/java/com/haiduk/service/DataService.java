@@ -13,7 +13,6 @@ import java.util.List;
 @Transactional
 
 public class DataService {
-
     private ProductService productService;
     private List<String> name;
     private List<Product> selectList;

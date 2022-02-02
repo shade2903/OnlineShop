@@ -8,28 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderMapper  {
+public class OrderMapper  extends MapperConverterClass<Order,OrderDto>  {
 
-    private MapperFacade mapperFacade;
-    @Autowired
-    public OrderMapper(MapperFacade mapperFacade){
-        this.mapperFacade = mapperFacade;
+
+    @Override
+    Class<OrderDto> getDomainClass() {
+        return OrderDto.class;
     }
 
-
-
-    public OrderDto toDto(Order entity) {
-
-        return mapperFacade.map(entity, OrderDto.class);
+    @Override
+    Class<Order> getEntityClass() {
+        return Order.class;
     }
-
-    public Order fromDto(OrderDto dto) {
-        return mapperFacade.map(dto, Order.class);
-    }
-
-
-
-
-
-
 }

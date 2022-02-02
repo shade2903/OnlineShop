@@ -33,8 +33,14 @@ public class OrderService {
     public void addProductToOrder(User user, String select) {
         List<Product> products;
         Order order;
-        Product selectProduct = (productRepository.getById(Integer.parseInt(select)));
-         if(user.getOrders().size() !=0){
+
+
+        if(user.getOrders().size() == 0){
+            order = new Order();
+            order.setUser(user);
+            orderRepository.save(order);
+        }else if(user.getOrders().size() !=0 && select != null){
+            Product selectProduct = (productRepository.getById(Integer.parseInt(select)));
             order = getCurrentOrder(user);
             products = order.getProductList();
             products.add(selectProduct);
@@ -42,6 +48,7 @@ public class OrderService {
             order.setProductList(products);
             orderRepository.updateOrder(order);
          }
+
     }
 
     public Double getTotalPrice(List<Product> totalPriceList) {
