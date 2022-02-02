@@ -4,6 +4,7 @@ package com.haiduk.controller;
 import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
+import com.haiduk.dto.ProductDto;
 import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
 import com.haiduk.repository.UserRepository;
@@ -31,18 +32,14 @@ public class ProductController {
     private ProductService productService;
     private OrderService orderService;
     private UserService userService;
-    private UserRepository userRepository;
-    private OrderRepository orderRepository;
-
 
     @Autowired
     public ProductController( ProductService productService, OrderService orderService,
-                             UserService userService, UserRepository userRepository, OrderRepository orderRepository) {
+                             UserService userService) {
         this.productService = productService;
         this.orderService = orderService;
         this.userService = userService;
-        this.userRepository = userRepository;
-        this.orderRepository = orderRepository;
+
     }
 
     @RequestMapping("/product")
@@ -50,20 +47,11 @@ public class ProductController {
 
         User user = userService.getUserByLogin(principal.getName());
         orderService.addProductToOrder(user, select);
-        if(select == null && user.getOrders().size() != 0){
-            Order order = new Order();
-            order.setUser(user);
-            orderRepository.save(order);
-        }
-
-        List<Product> selectlist = null;
+        List<ProductDto> selectlist = null;
         if (select != null) {
-
-
-            selectlist =  orderService.getOrder(user).getProductList();
+            selectlist =  orderService.getOrderDto(user).getProductList();
 
         }
-
         model.addAttribute("userName", principal.getName());
         model.addAttribute("products", productService.getPriceList());
         model.addAttribute("clickList", selectlist);

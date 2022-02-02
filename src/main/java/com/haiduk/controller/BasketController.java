@@ -36,14 +36,10 @@ public  class  BasketController {
         this.userService = userService;
         this.orderService = orderService;
 
-
     }
     @RequestMapping("/basket")
     public String showBasket(Principal principal,  ModelMap model){
-        System.out.println(orderService.getOrder(userService.getUserByLogin(principal.getName())));
-        model.addAttribute("order",orderService.getOrder(userService.getUserByLogin(principal.getName())));
-
-        System.out.println(orderService.getOrderDto(orderService.getOrder(userService.getUserByLogin(principal.getName()))));
+        model.addAttribute("order",orderService.getOrderDto(userService.getUserByLogin(principal.getName())));
         return "shoppingList";
     }
 

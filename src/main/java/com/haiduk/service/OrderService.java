@@ -33,8 +33,6 @@ public class OrderService {
     public void addProductToOrder(User user, String select) {
         List<Product> products;
         Order order;
-
-
         if(user.getOrders().size() == 0){
             order = new Order();
             order.setUser(user);
@@ -47,7 +45,11 @@ public class OrderService {
             order.setTotalPrice(getTotalPrice(products));
             order.setProductList(products);
             orderRepository.updateOrder(order);
-         }
+         }else if(select == null && user.getOrders().size() != 0){
+            order = new Order();
+            order.setUser(user);
+            orderRepository.save(order);
+        }
 
     }
 
@@ -66,12 +68,9 @@ public class OrderService {
 
         throw new UserNotFoundException("User not found in database");
     }
-    public List<Product> getAllOrderProduct(User user){
 
-        return getCurrentOrder(user).getProductList();
-    }
-    public OrderDto getOrderDto(Order order){
-        return orderMapper.toDto(order);
+    public OrderDto getOrderDto(User user){
+        return orderMapper.toDto(getCurrentOrder(user));
     }
 
     private Order getCurrentOrder(User user){

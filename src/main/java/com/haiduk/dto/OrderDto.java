@@ -5,8 +5,24 @@ import java.util.List;
 public class OrderDto {
     private int id;
     private double totalPrice;
-    private UserDto userDTO;
-    private List<ProductDto> productsDTO;
+    private UserDto user;
+    private List<ProductDto> products;
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
+
+    public List<ProductDto> getProductList() {
+        return products;
+    }
+
+    public void setProductList(List<ProductDto> products) {
+        this.products = products;
+    }
 
     public OrderDto() {
     }
@@ -27,29 +43,13 @@ public class OrderDto {
         this.totalPrice = totalPrice;
     }
 
-    public UserDto getUserDTO() {
-        return userDTO;
-    }
-
-    public void setUserDTO(UserDto userDTO) {
-        this.userDTO = userDTO;
-    }
-
-    public List<ProductDto> getProductsDTO() {
-        return productsDTO;
-    }
-
-    public void setProductsDTO(List<ProductDto> productsDTO) {
-        this.productsDTO = productsDTO;
-    }
-
     @Override
     public String toString() {
         return "OrderDto{" +
                 "id=" + id +
                 ", totalPrice=" + totalPrice +
-                ", userDTO=" + userDTO +
-                ", productsDTO=" + productsDTO +
+                ", user=" + user +
+                ", products=" + products +
                 '}';
     }
 }
