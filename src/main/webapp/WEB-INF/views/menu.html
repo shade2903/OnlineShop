@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" data-th-href="@{/css/style.css}">
+    <title>MENU</title>
+</head>
+<body>
+<div class="inner">
+    <h1 th:text="'Welcome ' +${userName} + ' !'"></h1>
+
+    <form method="post" action="/product">
+        <br/>
+        <h3>Make you order</h3>
+        <select class="input" name="select">
+            <option th:each="product: ${products}"
+                    th:text="${product.name} + ' ' + ${product.price} + '$'"
+                    th:value="${product.id}"></option>
+
+            <input type="hidden" name="filter" value="true">
+
+        </select>
+        <br>
+        <input class="input" type="submit" value="Add Item"/>
+    </form>
+    <form method="post" action="/basket">
+        <input class="input" type="submit" value="Submit">
+        <p>You have already chosen:</p>
+
+        <div th:each="product: ${clickList}">
+            <option th:text="${product.name} + ' (' + ${product.price} + ')'"></option>
+            <input type="hidden" name="selectList" th:value="${product.name}">
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

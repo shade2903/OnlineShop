@@ -1,49 +1,28 @@
 package com.haiduk.service;
 
-import com.haiduk.domain.PriceList;
 import com.haiduk.domain.Product;
+import com.haiduk.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
+@Service
+@Transactional
 
 public class DataService {
-    private ArrayList<String> name = new ArrayList<>();
-    private ArrayList<Product> selectList = new ArrayList<>();
-    private ArrayList<Product> priceList = PriceList.getListProduct();
-
-
-    public ArrayList<Product> getSelectPriceList(String str, HttpServletRequest req){
-
-        if(req.getParameterValues(str) != null) {
-
-            for (String s : req.getParameterValues(str)) {
-                name.add(s);
-            }
-            for (int i = 0; i < name.size(); i++) {
-                for (Product x : priceList) {
-                    if ((x.getName()).equals(name.get(i))) {
-                        selectList.add(x);
-                    }
-                }
-            }
-            return selectList;
-        }
-        return null;
+    private ProductService productService;
+    private List<String> name;
+    private List<Product> selectList;
+    private List<Product> priceList;
+    @Autowired
+    public DataService(ProductService productService){
+        this.productService = productService;
     }
 
-    public ArrayList<Product> getSelect(String str, HttpServletRequest req) {
-        if (req.getParameter(str) != null) {
-            for (Product s : priceList) {
-                if (s.getName().equals(req.getParameter(str))) {
-                    selectList.add(s);
-                }
-            }
-        }
 
-        return selectList;
 
-    }
 
 }
