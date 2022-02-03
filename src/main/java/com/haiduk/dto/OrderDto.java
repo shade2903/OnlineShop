@@ -1,5 +1,7 @@
 package com.haiduk.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.List;
 
 public class OrderDto {
@@ -7,7 +9,7 @@ public class OrderDto {
     private double totalPrice;
     private UserDto user;
     private List<ProductDto> products;
-
+    @JsonBackReference
     public UserDto getUser() {
         return user;
     }

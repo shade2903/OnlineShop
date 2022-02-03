@@ -1,5 +1,8 @@
 package com.haiduk.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.haiduk.domain.Order;
 
 import java.util.List;
@@ -8,6 +11,9 @@ public class UserDto {
     private int id;
     private String name;
     private String password;
+
+
+//    @JsonIgnore
     private List<OrderDto> orders;
 
     public UserDto() {
@@ -36,7 +42,7 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @JsonManagedReference
     public List<OrderDto> getOrders() {
         return orders;
     }
