@@ -6,6 +6,7 @@ import com.haiduk.domain.Order;
 import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
 import com.haiduk.dto.OrderDto;
+import com.haiduk.dto.UserDto;
 import com.haiduk.exception.UserNotFoundException;
 import com.haiduk.repository.OrderRepository;
 import com.haiduk.repository.ProductRepository;
@@ -75,6 +76,17 @@ public class OrderService {
 
     private Order getCurrentOrder(User user){
         return user.getOrders().get(user.getOrders().size() - 1);
+    }
+
+    public List<OrderDto> getOrders(){
+        List<Order> orders = orderRepository.getAll();
+        List<OrderDto> ordersDto = new ArrayList<>();
+        if(orders.size() != 0){
+            for(Order o : orders){
+                ordersDto.add(orderMapper.toDto(o));
+            }
+        }
+        return ordersDto;
     }
 
 

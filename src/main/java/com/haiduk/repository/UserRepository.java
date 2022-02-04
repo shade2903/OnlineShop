@@ -20,9 +20,9 @@ public class UserRepository {
     }
 
 
-    public  User save(User user){
+    public  void save(User user){
         sessionFactory.getCurrentSession().save(user);
-        return user;
+
     }
     public void updateUser(User user) {
         sessionFactory.getCurrentSession().update(user);

@@ -1,0 +1,7 @@
+package com.haiduk.restcontroller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+//@RestController
+public class ProductController {
+}

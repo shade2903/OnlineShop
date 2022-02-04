@@ -42,7 +42,8 @@ public class UserDto {
     public void setPassword(String password) {
         this.password = password;
     }
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonBackReference
     public List<OrderDto> getOrders() {
         return orders;
     }

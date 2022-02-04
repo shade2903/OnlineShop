@@ -1,6 +1,8 @@
 package com.haiduk.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 
@@ -9,7 +11,8 @@ public class OrderDto {
     private double totalPrice;
     private UserDto user;
     private List<ProductDto> products;
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonManagedReference
     public UserDto getUser() {
         return user;
     }

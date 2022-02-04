@@ -44,5 +44,11 @@ public class UserService {
     public UserDto getUserById(int id){
         return userMapper.toDto(userRepository.getById(id));
     }
+    public void save(User user){
+        userRepository.save(user);
+    }
+    public User getUser(int id){
+        return userRepository.getById(id);
+    }
 
 }
