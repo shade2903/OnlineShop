@@ -5,7 +5,7 @@ import com.haiduk.domain.Product;
 import com.haiduk.domain.User;
 
 
-
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -38,29 +38,29 @@ public class HibernateConfig {
         this.environment = environment;
     }
 
-    @Bean
-    public DataSource dataSource() {
-
-        EmbeddedDatabaseBuilder databaseBuilder = new EmbeddedDatabaseBuilder();
-        return databaseBuilder
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("scripts/create_table.sql")
-                .addScript("scripts/insert_table.sql")
-                .setScriptEncoding("UTF-8")
-                .continueOnError(true)
-                .ignoreFailedDrops(true)
-                .build();
-    }
-
 //    @Bean
 //    public DataSource dataSource() {
-//        BasicDataSource dataSource = new BasicDataSource();
-//        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-//        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-//        dataSource.setUsername(environment.getRequiredProperty("jdbc.user"));
-//        dataSource.setPassword(environment.getRequiredProperty("jdbc.pass"));
-//return dataSource;
+//
+//        EmbeddedDatabaseBuilder databaseBuilder = new EmbeddedDatabaseBuilder();
+//        return databaseBuilder
+//                .setType(EmbeddedDatabaseType.H2)
+//                .addScript("scripts/create_table.sql")
+//                .addScript("scripts/insert_table.sql")
+//                .setScriptEncoding("UTF-8")
+//                .continueOnError(true)
+//                .ignoreFailedDrops(true)
+//                .build();
 //    }
+
+    @Bean
+    public DataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+        dataSource.setUsername(environment.getRequiredProperty("jdbc.user"));
+        dataSource.setPassword(environment.getRequiredProperty("jdbc.pass"));
+return dataSource;
+    }
 
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
@@ -82,7 +82,9 @@ public class HibernateConfig {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        properties.put("spring.jpa.hibernate.ddl-auto", environment.getRequiredProperty("spring.jpa.hibernate.ddl-auto"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.hbm2ddl.import_files", environment.getRequiredProperty("hibernate.hbm2ddl.import_files"));
+        properties.put("hibernate.hbm2ddl.import_files_sql_extractor", environment.getRequiredProperty("hibernate.hbm2ddl.import_files_sql_extractor"));
         return properties;
 
 

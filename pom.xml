@@ -181,11 +181,11 @@
             <version>${json-path.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.tomcat</groupId>-->
-<!--            <artifactId>tomcat-dbcp</artifactId>-->
-<!--            <version>9.0.56</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>9.0.56</version>
+        </dependency>
 
 
 

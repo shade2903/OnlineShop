@@ -62,6 +62,8 @@
           <element id="library" level="project" name="Maven: net.minidev:json-smart:2.3" />
           <element id="library" level="project" name="Maven: net.minidev:accessors-smart:1.2" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.4" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-dbcp:9.0.56" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.56" />
         </element>
       </element>
       <element id="directory" name="META-INF">
